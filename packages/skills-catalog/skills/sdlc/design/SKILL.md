@@ -7,7 +7,7 @@
 | Fase SDLC | Design |
 | Nível mínimo Maestro | Aprendiz |
 | Provedor LLM | Qualquer (Claude, GPT-4o, Gemini) |
-| Versão | 2.0.0 |
+| Versão | 2.1.0 |
 
 ## Objetivo
 
@@ -18,7 +18,7 @@ Criar fluxos funcionais, definir a experiência do usuário e organizar User Sto
 | Campo | Tipo | Obrigatoriedade | Descrição |
 |---|---|---|---|
 | `relatorio_discovery` | string (Markdown) | Obrigatório | Relatório de discovery com linguagem ubíqua e escopo técnico |
-| `personas` | lista de strings | Obrigatório | Descrição das personas ou tipos de usuário identificados no discovery |
+| `personas` | lista de strings | Obrigatório | Descrição das personas — deve ser o output de `doc-persona`, não uma lista improvisada. Se `doc-persona` não foi executada, execute-a com os dados de entrevista do Discovery antes de rodar esta skill |
 | `fluxos_priorizados` | lista de strings | Opcional | Fluxos de usuário priorizados para esta iteração |
 | `restricoes_ux` | lista de strings | Opcional | Restrições de acessibilidade, plataforma ou experiência conhecidas |
 | `design_system` | string | Opcional | Nome ou referência ao design system adotado |

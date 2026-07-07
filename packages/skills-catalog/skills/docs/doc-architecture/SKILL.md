@@ -8,11 +8,13 @@
 | Categoria | docs |
 | Nível mínimo Maestro | Praticante |
 | Provedor LLM | Qualquer (Claude, GPT-4o, Gemini) |
-| Versão | 1.1.0 |
+| Versão | 2.0.0 |
 
 ## Objetivo
 
-Gerar o documento de arquitetura técnica do sistema, cobrindo visão geral, componentes principais, fluxo de dados, dependências externas, decisões de design e trade-offs, aplicando os princípios de Clean Architecture, DDD e Event-Driven quando pertinentes ao contexto.
+Documentar a arquitetura técnica de um **sistema existente** — aquele que já está em produção ou em desenvolvimento avançado e nunca foi formalmente documentado. É a skill de auditoria e reverse-engineering arquitetural, não de design. Para definir a arquitetura de um sistema novo, use `skills/sdlc/architecture`.
+
+O output desta skill é `docs/existing-architecture.md` — arquivo separado do `docs/architecture.md` produzido pelo pipeline SDLC, para evitar sobreposição.
 
 ## Input
 
@@ -27,7 +29,7 @@ Gerar o documento de arquitetura técnica do sistema, cobrindo visão geral, com
 ## Output
 
 - **Formato:** Markdown
-- **Arquivo sugerido:** `docs/architecture.md`
+- **Arquivo sugerido:** `docs/existing-architecture.md` (distinto de `docs/architecture.md` produzido por `sdlc/architecture`)
 - **Campos obrigatórios:** visão geral, diagrama de componentes (ASCII ou referência externa), responsabilidade de cada componente, fluxo de dados principal, dependências externas, separação de camadas, trade-offs documentados
 
 ## Prompt base

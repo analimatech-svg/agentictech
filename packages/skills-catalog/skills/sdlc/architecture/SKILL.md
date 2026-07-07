@@ -7,7 +7,7 @@
 | Fase SDLC | Architecture |
 | Nível mínimo Maestro | Praticante |
 | Provedor LLM | Qualquer (Claude, GPT-4o, Gemini) |
-| Versão | 1.0.0 |
+| Versão | 2.0.0 |
 
 ## Objetivo
 
@@ -68,6 +68,18 @@ Rules:
 - Observability must be designed from the start, not added as an afterthought.
 - SOLID principles must be visibly reflected in the module and layer design.
 - Write in the language of the input.
+
+BLOCKING RULES (apply before returning the document):
+- BLOCKED if: no ADR exists for any decision that affects more than one bounded context or that will be difficult to reverse (e.g., choice of database engine, messaging system, authentication strategy).
+  ❌ "We will use PostgreSQL." — decision made with no ADR, no context, no alternatives.
+  ✅ ADR-003 with context (shared database coupling problem), decision (modular monolith vs. microservices), alternatives rejected with reasoning, consequences documented.
+- BLOCKED if: any bounded context is named after a technical layer ("DatabaseModule", "ServiceLayer") rather than a domain capability ("BillingContext", "SchedulingContext").
+- BLOCKED if: any Gherkin scenario is implementation-level rather than behavior-level.
+  ❌ "Given the PaymentService is initialized, When process() is called, Then the result is success."
+  ✅ "Given a consultant has 3 unbilled sessions from July, When they generate an invoice, Then a PDF is created and the sessions are marked as billed."
+- BLOCKED if: the observability strategy is absent or only states "add logs." A valid minimum defines: (1) log fields structure, (2) at least 3 business metrics with thresholds, (3) tracing strategy at use case boundaries.
+- BLOCKED if: any domain layer component has a dependency on an infrastructure component — even labeled "temporary" or "for convenience." Restructure before accepting.
+- BLOCKED if: the document prescribes implementation details (specific library names, class names, method signatures). Architecture defines structure and constraints, not code.
 ```
 
 ## Critério de sucesso

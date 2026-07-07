@@ -7,7 +7,7 @@
 | Fase SDLC | Builder |
 | Nível mínimo Maestro | Praticante |
 | Provedor LLM | Qualquer (Claude, GPT-4o, Gemini) |
-| Versão | 1.0.0 |
+| Versão | 2.0.0 |
 
 ## Objetivo
 
@@ -63,6 +63,16 @@ Implement the requested module following these mandatory rules:
 6. INLINE DOCUMENTATION: Add intent comments only where the WHY is not obvious from the code. Avoid restating the WHAT.
 
 7. CHANGELOG: Update CHANGELOG.md with: version, date, added/changed/fixed/removed sections.
+
+BLOCKING RULES (apply before returning the implementation):
+- BLOCKED if: `contexto_modulo` is absent and the architecture document covers more than one bounded context. Without a specific module target, the implementation will be speculative. Ask: "Which bounded context and which use case should be implemented in this iteration?"
+- BLOCKED if: any domain layer class imports from an infrastructure layer (repositories implementations, ORMs, HTTP clients, message brokers). Domain must depend only on abstractions.
+  ❌ `import { PrismaClient } from '@prisma/client'` inside a domain entity or use case.
+  ✅ Domain use case depends on `ISessionRepository` interface; infrastructure provides `PrismaSessionRepository` that implements it.
+- BLOCKED if: any use case has no corresponding test that maps to a Gherkin scenario from the input.
+- BLOCKED if: the CHANGELOG.md was not updated. Missing changelog = missing traceability. No exception.
+- BLOCKED if: any function or method has more than one reason to change (SRP violation) and exceeds 30 lines without internal decomposition into private methods.
+- BLOCKED if: any ADR from the input is violated in the implementation. If an ADR says "use event sourcing for the Billing context" and the implementation uses a direct database write, that is a blocking violation — flag the conflict and request clarification rather than silently violating the decision.
 
 Deliver: code files with full implementation, test files, updated CHANGELOG.md, and any required configuration.
 Write comments and documentation in the language of the input.

@@ -7,7 +7,7 @@
 | Fase SDLC | Monitor |
 | Nível mínimo Maestro | Regente |
 | Provedor LLM | Qualquer (Claude, GPT-4o, Gemini) |
-| Versão | 1.0.0 |
+| Versão | 2.0.0 |
 
 ## Objetivo
 
@@ -79,6 +79,18 @@ Rules:
 - Postmortem must be blameless: focus on systems and processes, not individuals.
 - Alerts must have defined thresholds, not vague conditions.
 - Write in the language of the input.
+
+BLOCKING RULES (apply before returning the package):
+- BLOCKED if: `dados_metricas` is absent AND the system is described as already in production. Without real metrics data, a monitoring report is fabricated. State explicitly: "Monitoring analysis requires actual metrics data. Provide a dump, export, or summary from your observability tool (Datadog, Grafana, CloudWatch, etc.) for the analysis period."
+  ❌ Producing DORA metrics tables with plausible-looking numbers when no data was provided.
+  ✅ "dados_metricas not provided — DORA metrics table cannot be populated with real values. The structure below shows what to fill in once data is available: [empty table with column headers]."
+- BLOCKED if: any alert threshold is described qualitatively ("when the system is slow", "if errors seem high"). Every alert must have a numeric threshold.
+  ❌ "Alert: fire when response time is unacceptable."
+  ✅ "Alert: p95 latency > 800ms sustained for 5 minutes | Severity: High | Channel: PagerDuty on-call."
+- BLOCKED if: a postmortem is generated without `logs_incidente` provided. Do not reconstruct a hypothetical incident.
+- BLOCKED if: any recommendation says "monitor X" without specifying what metric, what threshold, and what action to take when the threshold is breached. "Monitor error rates" is not a recommendation — it is a restatement of the job.
+  ❌ "Recommendation: monitor database performance."
+  ✅ "Recommendation: add alert for query latency p95 > 200ms on the sessions table (currently unmeasured). Instrument via pg_stat_statements. Owner: @infrastructure. Priority: High — database was the root cause of INC-042."
 ```
 
 ## Critério de sucesso

@@ -6,7 +6,7 @@
 |---|---|
 | Fase SDLC | Planning |
 | Categoria | docs |
-| Nível mínimo Maestro | Aprendiz |
+| Nível mínimo Maestro | Praticante |
 | Provedor LLM | Qualquer (Claude, GPT-4o, Gemini) |
 | Versão | 2.0.0 |
 
