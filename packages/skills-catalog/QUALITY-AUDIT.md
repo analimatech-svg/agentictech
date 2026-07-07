@@ -1,9 +1,10 @@
-# Auditoria de Qualidade — 38 Skills AgenticTech
+# Auditoria de Qualidade — 43 Skills AgenticTech
 
 **Data:** 2026-07-06 | **Rubric:** QUALITY-RUBRIC.md v1.0  
 **Rodada 1:** 7 reescritas + 1 skill nova  
 **Rodada 2:** upgrade sistêmico D1/D4/D7 nas 18 Pratas  
-**Rodada 3 (revisão independente):** 10 correções críticas identificadas e aplicadas — ver seção abaixo
+**Rodada 3 (revisão independente):** 10 correções críticas identificadas e aplicadas — ver seção abaixo  
+**Backlog v2:** 5 novas skills adicionadas — sprint-plan, retrospective, data-model, api-contract, judge/SKILL.md
 
 > ⚠️ **Nota de auditoria:** a rodada 2 inflou D4=2 para `doc-wireframe` e `doc-mockup` incorretamente — nenhuma das duas tinha blocking rules. Ambas foram reescritas para v2.0.0 na rodada 3. Os scores nesta tabela refletem o estado atual pós-correção.
 
@@ -53,6 +54,11 @@ Pontuação: D1 (Input) + D2 (Output) + D3 (Prompt) + D4 (Anti-padrões) + D5 (C
 | `doc-business-case` ✅ | 2 | 2 | 2 | 2 | 2 | 2 | 1 | **13** | 🥇 Ouro |
 | `doc-roadmap` ✅ | 2 | 2 | 2 | 2 | 2 | 2 | 1 | **13** | 🥇 Ouro |
 | `doc-status-report` ✅ | 2 | 2 | 2 | 2 | 2 | 2 | 1 | **13** | 🥇 Ouro |
+| `doc-sprint-plan` 🆕 | 2 | 2 | 2 | 2 | 2 | 2 | 2 | **14** | 🥇 Ouro |
+| `doc-retrospective` 🆕 | 2 | 2 | 2 | 2 | 2 | 2 | 2 | **14** | 🥇 Ouro |
+| `doc-data-model` 🆕 | 2 | 2 | 2 | 2 | 2 | 2 | 2 | **14** | 🥇 Ouro |
+| `doc-api-contract` 🆕 | 2 | 2 | 2 | 2 | 2 | 2 | 2 | **14** | 🥇 Ouro |
+| `judge/SKILL.md` 🆕 | 2 | 2 | 2 | 2 | 2 | 2 | 2 | **14** | 🥇 Ouro |
 
 ---
 
@@ -60,16 +66,16 @@ Pontuação: D1 (Input) + D2 (Output) + D3 (Prompt) + D4 (Anti-padrões) + D5 (C
 
 | Faixa | Qtd | Skills |
 |-------|-----|--------|
-| 🥇 Ouro (12–14) | 38 | Todas |
+| 🥇 Ouro (12–14) | 43 | Todas |
 | 🥈 Prata (8–11) | 0 | — |
 | 🥉 Bronze (4–7) | 0 | — |
 | 🔴 Vermelho (0–3) | 0 | — |
 
-**Skills prontas para publicação como referência (Ouro):** 38/38 (100%)  
-**Skills que atendem o mínimo de publicação (Prata+):** 38/38 (100%)  
-**Skills que precisam de reescrita prioritária:** 0/38 (0%)
+**Skills prontas para publicação como referência (Ouro):** 43/43 (100%)  
+**Skills que atendem o mínimo de publicação (Prata+):** 43/43 (100%)  
+**Skills que precisam de reescrita prioritária:** 0/43 (0%)
 
-> ✅ **Base 100% Ouro.** Toda a base em 12+ pontos. Publicação autorizada.
+> ✅ **Base 100% Ouro.** 43 skills, todas em 12+ pontos. Publicação autorizada.
 
 ### Skills reescritas nesta rodada
 
@@ -174,15 +180,15 @@ Achados de revisão independente (olhar de especialista externo) e correções a
 | 10 | `doc-persona`: nível Aprendiz incorreto | doc-persona/SKILL.md | Corrigido para Praticante |
 | 11 | mapa-de-skills: contagem 37 incorreta | mapa-de-skills.md | Corrigido para 38 skills, 27 docs skills |
 
-**Gaps identificados mas não resolvidos (backlog v2):**
+~~**Gaps identificados mas não resolvidos (backlog v2):**~~ ✅ Todos resolvidos
 
-| Gap | Impacto | Resolução proposta |
+| Gap | Impacto | Resolução |
 |---|---|---|
-| Judge sem SKILL.md executável | Alto — success criteria delegadas ao "Judge" são declarativas, não executáveis | Criar `judge/SKILL.md` com input (qualquer artefato), output (relatório de verificação), prompt com routing-rules |
-| Sem skill de sprint planning | Médio — cadeia vai de Work Breakdown direto para Builder sem planning de iteração | Nova skill `doc-sprint-plan` |
-| Sem skill de data model / domain model | Médio — sistemas com banco de dados não têm artefato de modelo de dados | Nova skill `doc-data-model` |
-| Sem skill de API contract (OpenAPI) | Médio — sistemas API-first não têm especificação de contrato formal | Nova skill `doc-api-contract` |
-| Sem skill de retrospectiva | Baixo-médio — Monitor cobre incidentes mas não aprendizado de sprint/iteração | Nova skill `doc-retrospective` |
+| ~~Judge sem SKILL.md executável~~ | Alto | ✅ `judge/SKILL.md` criado (v1.0.0, Regente) |
+| ~~Sem skill de sprint planning~~ | Médio | ✅ `doc-sprint-plan` criado (v1.0.0, Praticante) |
+| ~~Sem skill de data model / domain model~~ | Médio | ✅ `doc-data-model` criado (v1.0.0, Praticante) |
+| ~~Sem skill de API contract (OpenAPI)~~ | Médio | ✅ `doc-api-contract` criado (v1.0.0, Praticante) |
+| ~~Sem skill de retrospectiva~~ | Baixo-médio | ✅ `doc-retrospective` criado (v1.0.0, Praticante) |
 
 ## Próximos passos
 
@@ -192,5 +198,5 @@ Achados de revisão independente (olhar de especialista externo) e correções a
 4. ~~**Upgrade D7 nas Pratas**~~ ✅ Concluído
 5. ~~**Upgrade D4 nas SDLC Prata**~~ ✅ Concluído
 6. ~~**Revisão independente + 11 correções críticas**~~ ✅ Concluído (Rodada 3)
-7. **Push + deploy** — `git push origin main` e publicar `skills.mentoratech.com.br` via Vercel.
-8. **Backlog v2:** Judge como SKILL.md executável + 4 skills faltantes (sprint-plan, data-model, api-contract, retrospective).
+7. ~~**Backlog v2: 5 novas skills**~~ ✅ Concluído — sprint-plan, retrospective, data-model, api-contract, judge/SKILL.md
+8. **Push + deploy** — `git push origin main` + publicar `skills.mentoratech.com.br` via Vercel.
