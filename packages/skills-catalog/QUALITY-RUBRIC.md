@@ -1,8 +1,8 @@
-# Rubric de Qualidade — Skills AgenticTech
+# Rubric de Qualidade — Skills MaestroAI-Tech
 
 **Versão:** 1.0 | **Data:** 2026-07-06
 
-Critério de avaliação para garantir que toda skill do registry AgenticTech tenha profundidade profissional.  
+Critério de avaliação para garantir que toda skill do registry MaestroAI-Tech tenha profundidade profissional.  
 Cada skill é pontuada em 7 dimensões (0–2 cada). Máximo: 14 pontos.
 
 ---

@@ -1,4 +1,4 @@
-# Glossário Central — AgenticTech
+# Glossário Central — MaestroAI-Tech
 
 > Fonte de verdade para toda nomenclatura usada na plataforma MaestroAI-Tech.
 > Cada conceito tem um nome único. Termos sinônimos são proibidos para evitar confusão.

@@ -1,4 +1,4 @@
-# Auditoria de Qualidade — 43 Skills AgenticTech
+# Auditoria de Qualidade — 43 Skills MaestroAI-Tech
 
 **Data:** 2026-07-06 | **Rubric:** QUALITY-RUBRIC.md v1.0  
 **Rodada 1:** 7 reescritas + 1 skill nova  

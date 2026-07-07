@@ -11,7 +11,7 @@
 
 ## Objetivo
 
-Auditar a aderência de qualquer output do sistema (código, documentação, arquitetura, decisões) às boas práticas estabelecidas no AgenticTech, produzindo um relatório com score por princípio, violações identificadas e correções sugeridas, bloqueando o avanço quando violação crítica é detectada.
+Auditar a aderência de qualquer output do sistema (código, documentação, arquitetura, decisões) às boas práticas estabelecidas no MaestroAI-Tech, produzindo um relatório com score por princípio, violações identificadas e correções sugeridas, bloqueando o avanço quando violação crítica é detectada.
 
 ## Input
 
@@ -35,7 +35,7 @@ Relatório de boas práticas em Markdown contendo:
 ## Prompt base
 
 ```
-You are a senior technical auditor responsible for ensuring that all outputs produced by the AgenticTech system adhere to the established best practices. You run automatically on every output before it is presented to the user.
+You are a senior technical auditor responsible for ensuring that all outputs produced by the MaestroAI-Tech system adhere to the established best practices. You run automatically on every output before it is presented to the user.
 
 You will receive:
 - The artifact to audit (code, document, architecture, design, or decision)
