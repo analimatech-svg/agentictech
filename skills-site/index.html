@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skills Registry — MaestroAI-Tech</title>
+  <meta name="description" content="43 skills agênticas para Consultores de IA que desenvolvem software com excelência.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ── TOKENS ──────────────────────────────────────────────── */
+:root {
+  --bg:         #f9fafb;
+  --surface:    #ffffff;
+  --border:     #e5e7eb;
+  --border-2:   #d1d5db;
+  --text:       #111827;
+  --text-2:     #6b7280;
+  --text-3:     #9ca3af;
+  --primary:    #4361ee;
+  --teal:       #2ec4b6;
+  --amber:      #d97706;
+  --shadow:     0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.05);
+  --shadow-lg:  0 4px 16px rgba(0,0,0,.10), 0 2px 6px rgba(0,0,0,.04);
+  --r:          8px;
+  --font:       'Inter', -apple-system, sans-serif;
+}
+[data-theme="dark"] {
+  --bg:      #0f1117;
+  --surface: #1a1d27;
+  --border:  rgba(255,255,255,.07);
+  --border-2:rgba(255,255,255,.12);
+  --text:    #f3f4f6;
+  --text-2:  #9ca3af;
+  --text-3:  #6b7280;
+  --shadow:     0 1px 3px rgba(0,0,0,.3);
+  --shadow-lg:  0 4px 16px rgba(0,0,0,.45);
+}
+
+/* ── RESET ───────────────────────────────────────────────── */
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior: smooth; }
+body { font-family:var(--font); background:var(--bg); color:var(--text); min-height:100vh; -webkit-font-smoothing:antialiased; }
+a { color:inherit; text-decoration:none; }
+button { cursor:pointer; border:none; background:none; font-family:var(--font); color:inherit; }
+input  { font-family:var(--font); }
+
+/* ── HEADER ──────────────────────────────────────────────── */
+.header {
+  position: sticky; top:0; z-index:100;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+.header-inner {
+  max-width: 1280px; margin:0 auto;
+  padding: 0 32px; height: 58px;
+  display: flex; align-items: center; gap: 20px;
+}
+.logo {
+  display: flex; align-items: center; gap: 10px;
+  flex-shrink: 0;
+}
+.logo-mark {
+  width: 28px; height: 28px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, var(--primary), var(--teal));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 700; color: #fff; letter-spacing: -.5px;
+}
+.logo-text {
+  font-size: 14px; font-weight: 600; color: var(--text);
+  letter-spacing: -.3px;
+}
+.logo-text em { font-style: normal; color: var(--text-2); font-weight: 400; }
+
+.search-wrap {
+  flex: 1; max-width: 520px;
+  position: relative;
+}
+.search-ico {
+  position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+  color: var(--text-3); pointer-events: none; display: flex;
+}
+.search-input {
+  width: 100%; height: 38px;
+  border: 1px solid var(--border-2);
+  border-radius: 19px;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 14px;
+  padding: 0 36px 0 38px;
+  outline: none;
+  transition: border-color .15s, box-shadow .15s;
+}
+.search-input::placeholder { color: var(--text-3); }
+.search-input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(67,97,238,.1); }
+.clear-btn {
+  position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+  width: 20px; height: 20px; border-radius: 50%;
+  color: var(--text-3); font-size: 12px;
+  display: none; align-items: center; justify-content: center;
+  transition: background .15s;
+}
+.clear-btn:hover { background: var(--border); color: var(--text); }
+.clear-btn.on { display: flex; }
+
+.hdr-right { display:flex; align-items:center; gap:6px; margin-left:auto; flex-shrink:0; }
+.icon-btn {
+  width: 34px; height: 34px; border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-2); font-size: 14px;
+  transition: background .15s, color .15s;
+}
+.icon-btn:hover { background: var(--bg); color: var(--text); }
+.gh-link {
+  display: flex; align-items: center; gap: 6px;
+  padding: 0 14px; height: 34px; border-radius: 6px;
+  font-size: 13px; font-weight: 500; color: var(--text-2);
+  border: 1px solid var(--border-2);
+  transition: border-color .15s, color .15s;
+}
+.gh-link:hover { border-color: var(--text); color: var(--text); }
+
+/* ── FILTER STRIP ────────────────────────────────────────── */
+.filter-strip {
+  position: sticky; top: 58px; z-index: 90;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+.filter-inner {
+  max-width: 1280px; margin: 0 auto;
+  padding: 10px 32px;
+  display: flex; align-items: center; gap: 6px;
+  overflow-x: auto; scrollbar-width: none;
+}
+.filter-inner::-webkit-scrollbar { display: none; }
+
+.pill {
+  display: inline-flex; align-items: center; gap: 5px;
+  height: 32px; padding: 0 14px;
+  border-radius: 16px;
+  font-size: 13px; font-weight: 500;
+  border: 1px solid var(--border-2);
+  color: var(--text-2);
+  background: var(--surface);
+  white-space: nowrap; flex-shrink: 0;
+  transition: all .15s;
+}
+.pill:hover { border-color: var(--text-2); color: var(--text); }
+.pill.active { border-color: var(--primary); color: var(--primary); background: rgba(67,97,238,.06); font-weight: 600; }
+.pill .n { font-size: 11px; color: var(--text-3); font-weight: 400; }
+.pill.active .n { color: rgba(67,97,238,.7); }
+
+.pill-sep { width: 1px; height: 16px; background: var(--border); flex-shrink:0; margin: 0 2px; }
+
+/* ── MAIN ────────────────────────────────────────────────── */
+.main { max-width: 1280px; margin: 0 auto; padding: 28px 32px 80px; }
+.result-row { display: flex; align-items: center; margin-bottom: 18px; }
+.result-txt { font-size: 13px; color: var(--text-3); }
+
+/* ── GRID ────────────────────────────────────────────────── */
+.grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+
+/* ── CARD ────────────────────────────────────────────────── */
+.card {
+  background: var(--surface);
+  border-radius: var(--r);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  padding: 0;
+  cursor: pointer;
+  display: flex; flex-direction: column;
+  overflow: hidden;
+  transition: box-shadow .18s, transform .18s, border-color .18s;
+}
+.card:hover {
+  box-shadow: var(--shadow-lg);
+  border-color: var(--border-2);
+  transform: translateY(-1px);
+}
+
+/* left border accent */
+.card-body {
+  padding: 16px 16px 14px 18px;
+  flex: 1; display: flex; flex-direction: column; gap: 5px;
+  border-left: 3px solid transparent;
+}
+.c-sdlc    .card-body { border-left-color: var(--primary); }
+.c-quality .card-body { border-left-color: var(--teal); }
+.c-docs    .card-body { border-left-color: var(--amber); }
+
+.card-meta { display: flex; align-items: center; gap: 6px; }
+.cat-label {
+  font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: .6px;
+}
+.c-sdlc    .cat-label { color: var(--primary); }
+.c-quality .cat-label { color: var(--teal); }
+.c-docs    .cat-label { color: var(--amber); }
+
+.meta-dot { width: 2px; height: 2px; border-radius: 50%; background: var(--border-2); }
+
+.phase-label { font-size: 11px; color: var(--text-3); font-weight: 400; }
+
+.card-title {
+  font-size: 14px; font-weight: 600; color: var(--text);
+  line-height: 1.35; margin-top: 1px;
+}
+.card-slug {
+  font-size: 11px; color: var(--text-3);
+  font-feature-settings: "tnum";
+  letter-spacing: .1px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.card-desc {
+  font-size: 12.5px; color: var(--text-2); line-height: 1.55;
+  margin-top: 3px; flex: 1;
+  display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.card-footer {
+  padding: 9px 16px 10px 18px;
+  border-top: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.level-badge {
+  font-size: 11px; font-weight: 500; padding: 2px 8px;
+  border-radius: 10px;
+}
+.l-aprendiz   { color: #059669; background: rgba(5,150,105,.09); }
+.l-praticante { color: var(--primary); background: rgba(67,97,238,.09); }
+.l-regente    { color: var(--amber); background: rgba(217,119,6,.09); }
+.l-maestro    { color: #dc2626; background: rgba(220,38,38,.09); }
+
+.card-cta { font-size: 11px; color: var(--text-3); }
+
+/* empty state */
+.empty-state {
+  grid-column: 1/-1;
+  text-align: center; padding: 80px 24px; color: var(--text-3);
+}
+.empty-state p { font-size: 14px; margin-bottom: 4px; color: var(--text-2); }
+.empty-state small { font-size: 12px; }
+
+/* ── DRAWER ──────────────────────────────────────────────── */
+.overlay {
+  position: fixed; inset:0;
+  background: rgba(0,0,0,.4);
+  z-index: 200;
+  opacity:0; pointer-events:none;
+  transition: opacity .2s;
+  display: flex; align-items: flex-start; justify-content: flex-end;
+}
+.overlay.open { opacity:1; pointer-events:all; }
+
+.drawer {
+  height: 100vh;
+  width: 540px; max-width: 100vw;
+  background: var(--surface);
+  border-left: 1px solid var(--border);
+  overflow-y: auto;
+  transform: translateX(100%);
+  transition: transform .22s cubic-bezier(.25,.46,.45,.94);
+  scrollbar-width: thin;
+}
+.overlay.open .drawer { transform: translateX(0); }
+.drawer::-webkit-scrollbar { width: 4px; }
+.drawer::-webkit-scrollbar-thumb { background: var(--border-2); border-radius: 2px; }
+
+/* drawer accent strip */
+.drawer-strip {
+  height: 4px;
+}
+.d-sdlc    .drawer-strip { background: var(--primary); }
+.d-quality .drawer-strip { background: var(--teal); }
+.d-docs    .drawer-strip { background: var(--amber); }
+
+.drawer-header { padding: 20px 24px 16px; border-bottom: 1px solid var(--border); }
+.drawer-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 10px; }
+.close-btn {
+  width: 28px; height: 28px; border-radius: 6px; flex-shrink:0;
+  color: var(--text-3); font-size: 14px;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .15s, color .15s;
+}
+.close-btn:hover { background: var(--bg); color: var(--text); }
+.drawer-title { font-size: 20px; font-weight: 700; line-height: 1.25; letter-spacing: -.3px; }
+.drawer-slug  { font-size: 12px; color: var(--text-3); margin-top: 4px; }
+
+.drawer-pills { display: flex; flex-wrap: wrap; gap: 6px; }
+.dpill {
+  font-size: 11px; font-weight: 600; padding: 3px 10px;
+  border-radius: 10px; text-transform: uppercase; letter-spacing: .4px;
+}
+.dp-sdlc    { color: var(--primary); background: rgba(67,97,238,.08); }
+.dp-quality { color: var(--teal);    background: rgba(46,196,182,.08); }
+.dp-docs    { color: var(--amber);   background: rgba(217,119,6,.08); }
+.dp-aprendiz   { color: #059669; background: rgba(5,150,105,.08); }
+.dp-praticante { color: var(--primary); background: rgba(67,97,238,.08); }
+.dp-regente    { color: var(--amber);   background: rgba(217,119,6,.08); }
+.dp-neutral { color: var(--text-2); background: var(--bg); border: 1px solid var(--border); }
+
+.drawer-body { padding: 20px 24px 32px; display: flex; flex-direction: column; gap: 24px; }
+.drawer-desc { font-size: 14px; color: var(--text-2); line-height: 1.7; }
+
+.section-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .7px; color: var(--text-3); margin-bottom: 10px; }
+
+/* meta grid */
+.meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.meta-cell {
+  background: var(--bg); border-radius: 6px; padding: 10px 12px;
+  border: 1px solid var(--border);
+}
+.mc-k { font-size: 10px; color: var(--text-3); text-transform: uppercase; letter-spacing: .5px; font-weight: 600; margin-bottom: 3px; }
+.mc-v { font-size: 13px; color: var(--text); font-weight: 500; }
+
+/* io rows */
+.io-list { display: flex; flex-direction: column; gap: 5px; }
+.io-row { display: flex; gap: 8px; align-items: flex-start; font-size: 13px; color: var(--text-2); line-height: 1.5; }
+.io-tag {
+  font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .3px;
+  padding: 2px 6px; border-radius: 4px; white-space: nowrap; flex-shrink:0; margin-top: 2px;
+}
+.io-in  { color: var(--primary); background: rgba(67,97,238,.08); }
+.io-out { color: var(--teal);    background: rgba(46,196,182,.08); }
+
+/* criteria */
+.crit-list { display: flex; flex-direction: column; gap: 6px; }
+.crit-row { display: flex; gap: 8px; align-items: flex-start; font-size: 13px; color: var(--text-2); line-height: 1.5; }
+.crit-row::before { content: '—'; color: var(--border-2); flex-shrink:0; font-weight: 300; }
+
+/* practice chips */
+.prac-wrap { display: flex; flex-wrap: wrap; gap: 6px; }
+.prac-chip {
+  font-size: 12px; font-weight: 500; padding: 4px 10px;
+  border-radius: 6px; border: 1px solid var(--border-2);
+  color: var(--text-2);
+}
+.section-divider { height: 1px; background: var(--border); }
+
+.gh-row {
+  display: flex;
+  padding-top: 4px;
+}
+.gh-btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 9px 16px; border-radius: 6px;
+  border: 1px solid var(--border-2);
+  font-size: 13px; font-weight: 500; color: var(--text-2);
+  transition: all .15s;
+}
+.gh-btn:hover { border-color: var(--primary); color: var(--primary); background: rgba(67,97,238,.04); }
+
+/* ── FOOTER ──────────────────────────────────────────────── */
+.footer { border-top: 1px solid var(--border); }
+.footer-inner {
+  max-width: 1280px; margin: 0 auto;
+  padding: 18px 32px;
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+}
+.footer-l { font-size: 12px; color: var(--text-3); }
+.footer-l a { color: var(--text-2); }
+.footer-links { display: flex; gap: 16px; }
+.footer-link { font-size: 12px; color: var(--text-3); transition: color .15s; }
+.footer-link:hover { color: var(--primary); }
+
+/* ── RESPONSIVE ──────────────────────────────────────────── */
+@media (max-width: 1100px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 780px)  { .grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) {
+  .grid { grid-template-columns: 1fr; }
+  .header-inner, .filter-inner, .main, .footer-inner { padding-left: 16px; padding-right: 16px; }
+  .drawer { width: 100vw; }
+  .logo-text em { display: none; }
+  .gh-link span { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+    <a href="#" class="logo">
+      <div class="logo-mark">M</div>
+      <span class="logo-text">MaestroAI-Tech <em>/ Skills Registry</em></span>
+    </a>
+
+    <div class="search-wrap">
+      <svg class="search-ico" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input class="search-input" id="q" type="text" placeholder="Buscar por nome, fase, objetivo ou prática..." autocomplete="off">
+      <button class="clear-btn" id="qclear" onclick="clearQ()">✕</button>
+    </div>
+
+    <div class="hdr-right">
+      <button class="icon-btn" id="themeBtn" onclick="toggleTheme()" title="Tema">◐</button>
+      <a href="https://github.com/analimatech-svg/agentictech" target="_blank" class="gh-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.09.682-.217.682-.48 0-.237-.009-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.07-.608.07-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.09-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+        <span>GitHub</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- FILTER STRIP -->
+<div class="filter-strip">
+  <div class="filter-inner">
+    <button class="pill active" data-cat="all">Todas <span class="n">37</span></button>
+    <div class="pill-sep"></div>
+    <button class="pill" data-cat="sdlc">SDLC <span class="n">8</span></button>
+    <button class="pill" data-cat="quality">Qualidade <span class="n">3</span></button>
+    <button class="pill" data-cat="docs">Documentação <span class="n">26</span></button>
+    <div class="pill-sep"></div>
+    <button class="pill" data-level="Aprendiz">Aprendiz</button>
+    <button class="pill" data-level="Praticante">Praticante</button>
+    <button class="pill" data-level="Regente">Regente</button>
+  </div>
+</div>
+
+<!-- MAIN -->
+<main class="main">
+  <div class="result-row">
+    <span class="result-txt" id="rcount">43 skills</span>
+  </div>
+  <div class="grid" id="grid"></div>
+</main>
+
+<!-- DRAWER -->
+<div class="overlay" id="overlay" onclick="maybeClose(event)">
+  <div class="drawer" id="drawer">
+    <div class="drawer-strip"></div>
+    <div class="drawer-header">
+      <div class="drawer-top">
+        <div>
+          <div class="drawer-title" id="d-title"></div>
+          <div class="drawer-slug" id="d-slug"></div>
+        </div>
+        <button class="close-btn" onclick="close_()">✕</button>
+      </div>
+      <div class="drawer-pills" id="d-pills"></div>
+    </div>
+    <div class="drawer-body">
+      <p class="drawer-desc" id="d-desc"></p>
+
+      <div>
+        <div class="section-title">Metadados</div>
+        <div class="meta-grid" id="d-meta"></div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div>
+        <div class="section-title">Entradas e Saídas</div>
+        <div class="io-list" id="d-io"></div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div>
+        <div class="section-title">Critérios de Sucesso</div>
+        <div class="crit-list" id="d-crit"></div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <div>
+        <div class="section-title">Boas Práticas Verificadas</div>
+        <div class="prac-wrap" id="d-prac"></div>
+      </div>
+
+      <div class="gh-row">
+        <a class="gh-btn" id="d-gh" href="#" target="_blank">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.09.682-.217.682-.48 0-.237-.009-.866-.013-1.7-2.782.603-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.07-.608.07-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.09-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836c.85.004 1.705.114 2.504.336 1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.741 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+          Ver SKILL.md no GitHub
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <span class="footer-l">© 2026 <a href="https://mentoratech.com.br">MentoraTech</a> · AgenticTech Registry v1.0</span>
+    <div class="footer-links">
+      <a href="https://apps.mentoratech.com.br" class="footer-link">Hub Apps</a>
+      <a href="https://github.com/analimatech-svg/agentictech" class="footer-link">GitHub</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ── DATA ────────────────────────────────────────────────── */
+const S = [
+  {id:'planning',       slug:'skills/sdlc/planning',       title:'Planning',        cat:'sdlc',    phase:'Fase 1',      level:'Aprendiz',
+   desc:'Estrutura o documento de visão com objetivos, escopo, stakeholders, restrições e critérios de sucesso — antes de qualquer execução.',
+   obj:'Garantir que objetivos e restrições estejam documentados antes do primeiro commit.',
+   inputs:['Objetivo do projeto e contexto de negócio','Lista de stakeholders com papéis','Restrições conhecidas (prazo, orçamento, tecnologia)'],
+   outputs:['Documento de visão com sumário executivo','Mapa de stakeholders com nível de influência','Escopo explícito: dentro e fora','Critérios de sucesso mensuráveis','Riscos iniciais com probabilidade e impacto'],
+   crit:['Pelo menos um critério de sucesso quantitativo','Escopo delimita explicitamente o que está fora','Cada stakeholder tem papel e influência definidos','Nenhuma afirmação vaga sem dado de suporte'],
+   prac:['DDD','Governança','Documentação Markdown'],
+   gh:'packages/skills-catalog/skills/sdlc/planning/SKILL.md'},
+
+  {id:'discovery',      slug:'skills/sdlc/discovery',      title:'Discovery',       cat:'sdlc',    phase:'Fase 2',      level:'Aprendiz',
+   desc:'Valida hipóteses do planejamento, aprofunda o entendimento do problema e define o escopo técnico com base em evidências reais.',
+   obj:'Produzir relatório com hipóteses validadas e linguagem ubíqua emergente do domínio.',
+   inputs:['Documento de visão (Planning)','Hipóteses a validar','Stakeholders disponíveis para entrevista'],
+   outputs:['Relatório de Discovery com hipóteses validadas e invalidadas','Glossário de linguagem ubíqua do domínio','Escopo técnico refinado'],
+   crit:['Hipóteses invalidadas documentadas com aprendizado concreto','Linguagem ubíqua usada consistentemente nos próximos documentos','Entrevistas realizadas vs. planejadas documentadas'],
+   prac:['DDD','Governança','Documentação Markdown'],
+   gh:'packages/skills-catalog/skills/sdlc/discovery/SKILL.md'},
+
+  {id:'design',         slug:'skills/sdlc/design',         title:'Design',          cat:'sdlc',    phase:'Fase 3',      level:'Aprendiz',
+   desc:'Cria fluxos funcionais, define a experiência do usuário e organiza User Stories em jornadas baseadas no domínio.',
+   obj:'Produzir design funcional aprovado com fluxos e User Stories com critérios Gherkin.',
+   inputs:['Relatório de Discovery','Personas validadas','Linguagem ubíqua do domínio'],
+   outputs:['Fluxos funcionais por jornada','User Stories com critérios Gherkin (Dado/Quando/Então)','Hierarquia de informação e mapa de navegação'],
+   crit:['100% das USs com critérios Gherkin','Design reflete o domínio — não o contrário','Wireframes aprovados pelo stakeholder'],
+   prac:['DDD','Clean Architecture','Documentação Markdown'],
+   gh:'packages/skills-catalog/skills/sdlc/design/SKILL.md'},
+
+  {id:'architecture',   slug:'skills/sdlc/architecture',   title:'Architecture',    cat:'sdlc',    phase:'Fase 4',      level:'Praticante',
+   desc:'Define estrutura técnica, padrões, dependências e decisões de alto nível antes da implementação, com ADR para cada decisão relevante.',
+   obj:'Produzir documento de arquitetura com diagrama C4 e ADRs fundamentando cada decisão técnica.',
+   inputs:['Design funcional aprovado','Requisitos não funcionais (performance, disponibilidade, segurança)','Restrições técnicas do ambiente'],
+   outputs:['Diagrama C4 (Context + Container em ASCII)','Bounded contexts com linguagem ubíqua','ADRs por decisão relevante (padrão Nygard)','User Stories enriquecidas com Gherkin','Estratégia de observabilidade: logs, métricas, tracing'],
+   crit:['Toda decisão arquitetural com ADR correspondente','SRP verificado em todas as camadas','Dependências apontando para dentro (Clean Architecture)','Bounded contexts usando linguagem ubíqua do Discovery'],
+   prac:['DDD','Clean Architecture','SOLID','Event-Driven','Observabilidade','Governança'],
+   gh:'packages/skills-catalog/skills/sdlc/architecture/SKILL.md'},
+
+  {id:'builder',        slug:'skills/sdlc/builder',        title:'Builder',         cat:'sdlc',    phase:'Fase 5',      level:'Praticante',
+   desc:'Implementa o código seguindo ADRs aprovados, USs com Gherkin e guia de estilo. Nunca no vácuo — sempre com rastreabilidade para os artefatos das fases anteriores.',
+   obj:'Produzir código implementado com documentação inline, changelog e cobertura de testes adequada.',
+   inputs:['ADRs aprovados (Architecture)','User Stories com critérios Gherkin','Guia de estilo de código'],
+   outputs:['Código implementado com documentação inline','Changelog atualizado (Keep a Changelog + SemVer)','Testes unitários cobrindo critérios Gherkin'],
+   crit:['Cobertura de testes unitários ≥ 80%','Complexidade ciclomática média ≤ 10','Todos os Conventional Commits seguidos','Nenhuma violação de SRP detectada'],
+   prac:['Clean Architecture','SOLID','Observabilidade','Documentação Markdown'],
+   gh:'packages/skills-catalog/skills/sdlc/builder/SKILL.md'},
+
+  {id:'validator',      slug:'skills/sdlc/validator',      title:'Validator',       cat:'sdlc',    phase:'Fase 6',      level:'Praticante',
+   desc:'Valida o software antes do deploy. Ponto de bloqueio: o Judge não avança sem resultado de validação com recomendação go/no-go aprovada.',
+   obj:'Executar validação funcional, regressão, segurança e performance com decisão objetiva.',
+   inputs:['Código implementado (Builder)','Test Plan e Test Cases','Critérios de aceite Gherkin (Design)'],
+   outputs:['Test Report com recomendação go/no-go','Bug Reports com severidade justificada','Relatório de segurança OWASP Top 10'],
+   crit:['Recomendação go/no-go com justificativa baseada em dado','Change Failure Rate calculada','Nenhuma vulnerabilidade Critical sem mitigação aprovada'],
+   prac:['Clean Architecture','SOLID','Observabilidade','Governança'],
+   gh:'packages/skills-catalog/skills/sdlc/validator/SKILL.md'},
+
+  {id:'deploy',         slug:'skills/sdlc/deploy',         title:'Deploy',          cat:'sdlc',    phase:'Fase 7',      level:'Regente',
+   desc:'Publica o software em produção de forma controlada e rastreável. Exige rollback testado antes da execução e gate de aprovação explícito.',
+   obj:'Executar deploy com monitoramento ativado e rollback testado antes de qualquer ação em produção.',
+   inputs:['Test Report com go-decision (Validator)','Deploy Plan aprovado','Rollback Plan testado'],
+   outputs:['Software publicado em produção','Monitoramento ativado com alertas configurados','Release Notes para o usuário final'],
+   crit:['Rollback testado e documentado antes do go-live','Monitoramento ativo antes de marcar deploy como concluído','Deployment Frequency registrada (DORA)'],
+   prac:['Observabilidade','Governança','Documentação Markdown'],
+   gh:'packages/skills-catalog/skills/sdlc/deploy/SKILL.md'},
+
+  {id:'monitor',        slug:'skills/sdlc/monitor',        title:'Monitor',         cat:'sdlc',    phase:'Fase 8',      level:'Regente',
+   desc:'Observa o sistema em produção, rastreia métricas DORA, identifica incidentes e sustenta a melhoria contínua. Nunca é a última fase — alimenta o próximo Planning.',
+   obj:'Manter dashboard ativo, conduzir retrospectivas e documentar aprendizados para o próximo ciclo.',
+   inputs:['Sistema em produção (Deploy)','Runbook operacional','Métricas DORA do ciclo anterior'],
+   outputs:['Dashboard com métricas DORA','Postmortem sem culpa com causa raiz e ações corretivas','Alimenta Planning do próximo ciclo'],
+   crit:['MTTR calculado e documentado','Disponibilidade registrada por período','Retrospectiva conduzida antes de fechar o ciclo'],
+   prac:['Observabilidade','Governança','Documentação Markdown'],
+   gh:'packages/skills-catalog/skills/sdlc/monitor/SKILL.md'},
+
+  // QUALIDADE
+  {id:'best-practices', slug:'skills/quality/best-practices', title:'Best Practices', cat:'quality', phase:'Transversal', level:'Aprendiz',
+   desc:'Audita os 7 princípios em todo output: DDD, Clean Architecture, SOLID, Event-Driven, Governança, Observabilidade e Documentação Markdown. Bloqueia em violação crítica.',
+   obj:'Garantir que nenhum output viole os princípios fundamentais — com score por princípio e log explicativo.',
+   inputs:['Qualquer output gerado por outra skill','Tipo de artefato (código, documento, arquitetura, decisão)','Fase do SDLC que gerou o artefato'],
+   outputs:['Score por princípio (0–10) com justificativa','Violações por severidade: Critical / High / Medium / Low','Veredicto: Aprovado / Aprovado com ressalvas / Bloqueado','Log de bloqueio com correção sugerida e exemplo'],
+   crit:['Todos os 7 princípios com score','Violação Critical bloqueia automaticamente o pipeline','Log explicativo gerado para toda violação','Nenhum artefato aprovado com violação Critical'],
+   prac:['DDD','Clean Architecture','SOLID','Event-Driven','Observabilidade','Governança','Documentação Markdown'],
+   gh:'packages/skills-catalog/skills/quality/best-practices/SKILL.md'},
+
+  {id:'code-review',    slug:'skills/quality/code-review',    title:'Code Review',   cat:'quality', phase:'Transversal', level:'Praticante',
+   desc:'Revisa legibilidade, duplicação, complexidade ciclomática e acoplamento. Bloqueia em violação crítica de SRP ou acoplamento excessivo entre camadas.',
+   obj:'Garantir que o código seja legível, sem duplicação crítica e com acoplamento controlado.',
+   inputs:['Código implementado (Builder)','ADRs de referência (Architecture)','Guia de estilo (Architecture)'],
+   outputs:['Relatório de code review com issues categorizadas','Complexidade ciclomática por módulo','Log de bloqueio em violação de SRP'],
+   crit:['Complexidade ciclomática ≤ 10 por módulo','Duplicação crítica identificada e sinalizada','SRP verificado em todas as classes e módulos'],
+   prac:['Clean Architecture','SOLID','Documentação Markdown'],
+   gh:'packages/skills-catalog/skills/quality/code-review/SKILL.md'},
+
+  {id:'security',       slug:'skills/quality/security',       title:'Security',      cat:'quality', phase:'Transversal', level:'Praticante',
+   desc:'Audita OWASP Top 10: injeção, autenticação falha, exposição de dados, configuração inadequada de segurança. Bloqueia deploy em vulnerabilidade crítica.',
+   obj:'Garantir que nenhuma vulnerabilidade Critical chegue ao Deploy sem tratamento documentado.',
+   inputs:['Código implementado','Modelo de ameaças (Architecture)','Configurações de ambiente e infraestrutura'],
+   outputs:['Relatório OWASP Top 10 por categoria','Vulnerabilidades por severidade (Critical/High/Medium/Low)','Log de bloqueio em Critical'],
+   crit:['Todos os 10 itens OWASP verificados','Nenhuma Critical sem mitigação aprovada','Superfície de ataque documentada e reduzida'],
+   prac:['Clean Architecture','Observabilidade','Governança'],
+   gh:'packages/skills-catalog/skills/quality/security/SKILL.md'},
+
+  // DOCS
+  {id:'doc-business-case',  slug:'skills/docs/doc-business-case',  title:'Business Case',   cat:'docs', phase:'Fase 1', level:'Aprendiz',
+   desc:'Justifica a existência do projeto com ROI estimado, alternativas avaliadas e descartadas, e critérios de decisão documentados.',
+   obj:'Responder objetivamente: por que este projeto, por que agora, e por que esta abordagem e não outra.',
+   inputs:['Objetivo e restrições do projeto (Planning)','Alternativas consideradas pelo time'],
+   outputs:['Business Case com ROI estimado e premissas explícitas','Matriz de alternativas descartadas com justificativa por critério'],
+   crit:['ROI com premissas documentadas e auditáveis','Pelo menos 2 alternativas avaliadas e descartadas','Critérios de decisão explícitos'],
+   prac:['Governança','Documentação Markdown'],
+   gh:'packages/skills-catalog/skills/docs/doc-business-case/SKILL.md'},
+
+  {id:'doc-roadmap',         slug:'skills/docs/doc-roadmap',         title:'Roadmap',         cat:'docs', phase:'Fase 1', level:'Aprendiz',
+   desc:'Organiza entregas em horizonte Now/Next/Later com responsáveis, dependências e critérios de conclusão para cada item.',
+   obj:'Criar visibilidade temporal das entregas sem comprometer datas fixas sem base técnica.',
+   inputs:['Documento de visão (Planning)','Lista de funcionalidades priorizadas'],
+   outputs:['Roadmap Now/Next/Later em Markdown','Dependências entre entregas documentadas','Critérios de conclusão por item'],
+   crit:['Horizonte Now com critérios de conclusão claros','Dependências explícitas entre itens','Nenhuma data sem base técnica documentada'],
+   prac:['Governança','Documentação Markdown'],
+   gh:'packages/skills-catalog/skills/docs/doc-roadmap/SKILL.md'},
+
+  {id:'doc-status-report',   slug:'skills/docs/doc-status-report',   title:'Status Report',   cat:'docs', phase:'Fases 1+8', level:'Aprendiz',
+   desc:'Relatório de acompanhamento com RAG (Red/Amber/Green) por dimensão, riscos ativos e próximas ações comprometidas com responsável.',
+   obj:'Manter stakeholders informados com indicadores objetivos de saúde do projeto — sem ruído, sem subjetividade.',
+   inputs:['Estado atual do projeto','Métricas coletadas no período','Riscos monitorados'],
+   outputs:['Status Report com RAG por dimensão (escopo, prazo, qualidade, risco)','Riscos ativos com dono e prazo de mitigação','Próximas ações comprometidas com responsável'],
+   crit:['RAG justificado com dado — nunca com percepção','Riscos com dono e prazo de mitigação definidos','Próximas ações com responsável nomeado'],
+   prac:['Observabilidade','Governança','Documentação Markdown'],
+   gh:'packages/skills-catalog/skills/docs/doc-status-report/SKILL.md'},
+
+  {id:'doc-work-breakdown',  slug:'skills/docs/doc-work-breakdown',  title:'Work Breakdown',  cat:'docs', phase:'Fases 1+2', level:'Praticante',
+   desc:'Decompõe um objetivo de negócio em Épicos → Features → Tasks com rastreabilidade completa, mapa de dependências e seção de fora do escopo.',
+   obj:'Transformar um objetivo vago em backlog estruturado e executável — preservando o "por que" do negócio em cada nível da hierarquia.',
+   inputs:['Objetivo de negócio em linguagem de domínio','Restrições de prazo e capacidade (opcional)','Relatório de Discovery ou Requisitos (opcional)','Nível de detalhe desejado: épicos / features / completo'],
+   outputs:['Mapa de épicos com critério de sucesso de negócio','Decomposição Feature + Tasks por épico','Mapa de dependências com avaliação de risco','Seção de fora do escopo (obrigatória)','Itens em aberto com owner e prazo'],
+   crit:['Épico tem critério de sucesso de negócio — não técnico','Feature tem declaração de valor para o usuário observável sem código','Task começa com verbo no imperativo e cabe em 1–3 dias','Fora do escopo presente com pelo menos 1 item justificado','Features e Tasks nunca misturadas no mesmo nível da hierarquia'],
+   prac:['DDD','Governança','Clean Architecture','Observabilidade','Documentação Markdown'],
+   gh:'packages/skills-catalog/skills/docs/doc-work-breakdown/SKILL.md'},
+
+  {id:'doc-requirements',    slug:'skills/docs/doc-requirements',    title:'Requirements',    cat:'docs', phase:'Fase 2', level:'Aprendiz',
+   desc:'Requisitos funcionais e não funcionais com valores numéricos e condições de verificação — sem ambiguidade que impeça o teste.',
+   obj:'Garantir que cada requisito tenha critério de aceite verificável antes de chegar ao Design.',
+   inputs:['Relatório de Discovery','Hipóteses validadas'],
+   outputs:['Requisitos funcionais com critério de aceite Gherkin','Requisitos não funcionais com threshold numérico (ex: p95 < 300ms)'],
+   crit:['Todo requisito funcional com critério Gherkin','Requisitos não funcionais com valor numérico mensurável','Nenhum requisito ambíguo ("deve ser rápido", "deve ser fácil")'],
+   prac:['DDD','Documentação Markdown'],
+   gh:'packages/skills-catalog/skills/docs/doc-requirements/SKILL.md'},
+
+  {id:'doc-persona',         slug:'skills/docs/doc-persona',         title:'Persona',         cat:'docs', phase:'Fase 2', level:'Aprendiz',
+   desc:'Perfil de usuário baseado em dados reais de entrevistas e comportamentos observados — nunca em suposição ou estatística genérica.',
+   obj:'Criar persona que guie decisões de design com dado real, não com intuição.',
+   inputs:['Entrevistas realizadas no Discovery','Comportamentos observados'],
+   outputs:['Persona com dados demográficos e comportamentos reais','Citações diretas de entrevistados','Frustrações com causa raiz identificada'],
+   crit:['Pelo menos 5 entrevistas como base','Frustrações documentadas com citação direta','Comportamentos observados — nunca supostos'],
+   prac:['DDD','Documentação Markdown'],
+   gh:'packages/skills-catalog/skills/docs/doc-persona/SKILL.md'},
+
+  {id:'doc-user-journey',    slug:'skills/docs/doc-user-journey',    title:'User Journey',    cat:'docs', phase:'Fase 2', level:'Aprendiz',
+   desc:'Jornada do usuário por etapa com ação, emoção, ponto de atrito e oportunidade — alimenta diretamente o Design.',
+   obj:'Mapear onde o usuário sofre hoje e onde há oportunidade de diferenciação.',
+   inputs:['Persona validada','Fluxo atual do usuário (AS-IS)'],
+   outputs:['Mapa de jornada por etapa com ação/emoção/atrito/oportunidade','Pontos de dor priorizados para o Design'],
+   crit:['Todas as etapas com emoção documentada','Pontos de atrito com causa raiz identificada','Oportunidades alinhadas ao escopo do Planning'],
+   prac:['DDD','Documentação Markdown'],
+   gh:'packages/skills-catalog/skills/docs/doc-user-journey/SKILL.md'},
+
+  {id:'doc-user-story',      slug:'skills/docs/doc-user-story',      title:'User Story',      cat:'docs', phase:'Fase 3', level:'Aprendiz',
+   desc:'User Story com critérios de aceite em Gherkin (Dado que / Quando / Então), estimativa e Definition of Done explícito.',
+   obj:'Garantir que toda US seja testável, sem ambiguidade e com escopo bem definido antes do Builder.',
+   inputs:['Fluxos funcionais (Design)','Requisitos funcionais (Discovery)'],
+   outputs:['USs com critérios Gherkin completos (mínimo 2 cenários por US)','Definition of Done por US'],
+   crit:['Todo critério de aceite em formato Gherkin válido','Definition of Done explícito por US','Nenhuma US com escopo vago'],
+   prac:['DDD','Governança','Documentação Markdown'],
+   gh:'packages/skills-catalog/skills/docs/doc-user-story/SKILL.md'},
+
+  {id:'doc-wireframe',       slug:'skills/docs/doc-wireframe',       title:'Wireframe',       cat:'docs', phase:'Fase 3', level:'Aprendiz',
+   desc:'Hierarquia de informação e navegação entre telas em baixa fidelidade — foco em estrutura e fluxo, não em visual final.',
+   obj:'Validar estrutura e navegação com stakeholders antes de investir em mockup de alta fidelidade.',
+   inputs:['Fluxos funcionais (Design)','Jornada do usuário (Discovery)'],
+   outputs:['Wireframes das telas do fluxo principal','Mapa de navegação entre telas'],
+   crit:['Hierarquia visual clara em cada tela','Navegação entre telas documentada','Aprovação do stakeholder antes de avançar para Mockup'],
+   prac:['DDD','Documentação Markdown'],
+   gh:'packages/skills-catalog/skills/docs/doc-wireframe/SKILL.md'},
+
+  {id:'doc-mockup',          slug:'skills/docs/doc-mockup',          title:'Mockup',          cat:'docs', phase:'Fase 3', level:'Aprendiz',
+   desc:'Especificação visual completa com estados de componentes, tokens de design, cores, tipografia e componentes reutilizáveis.',
+   obj:'Produzir especificação visual que o Builder possa implementar sem ambiguidade de design.',
+   inputs:['Wireframes aprovados','Identidade visual do produto'],
+   outputs:['Mockups de alta fidelidade de todas as telas','Guia de componentes reutilizáveis com todos os estados (default/hover/disabled/error)','Tokens de design (cores, espaçamento, tipografia)'],
+   crit:['Todos os estados de componente documentados','Tokens de design definidos e nomeados','Mockups aprovados antes do Prototype'],
+   prac:['Documentação Markdown'],
+   gh:'packages/skills-catalog/skills/docs/doc-mockup/SKILL.md'},
+
+  {id:'doc-prototype',       slug:'skills/docs/doc-prototype',       title:'Prototype',       cat:'docs', phase:'Fase 3', level:'Praticante',
+   desc:'Roteiro de prototipagem para validação com usuários reais, com script de teste, métricas de usabilidade e critério de aprovação.',
+   obj:'Validar o design com usuários reais antes de comprometer o Builder com a implementação.',
+   inputs:['Mockups aprovados','Hipóteses de usabilidade a validar'],
+   outputs:['Protótipo clicável do fluxo principal','Relatório de testes de usabilidade com taxa de conclusão de task'],
+   crit:['Pelo menos 5 usuários testando o protótipo','Taxa de conclusão de task documentada','Iterações até aprovação registradas'],
+   prac:['DDD','Governança','Documentação Markdown'],
+   gh:'packages/skills-catalog/skills/docs/doc-prototype/SKILL.md'},
+
+  {id:'doc-adr',             slug:'skills/docs/doc-adr',             title:'ADR',             cat:'docs', phase:'Fase 4', level:'Praticante',
+   desc:'Architecture Decision Record no padrão Michael Nygard: contexto, decisão, status, consequências e alternativas descartadas.',
+   obj:'Registrar toda decisão arquitetural com contexto suficiente para ser entendida por quem não estava na reunião.',
+   inputs:['Decisão arquitetural a documentar','Alternativas avaliadas com prós e contras'],
+   outputs:['ADR em Markdown (título / status / contexto / decisão / consequências)','Status: Proposed / Accepted / Deprecated / Superseded'],
+   crit:['Contexto documenta o problema — não a solução','Consequências incluem as negativas da decisão','Status atualizado sempre que a decisão mudar'],
+   prac:['Governança','Documentação Markdown'],
+   gh:'packages/skills-catalog/skills/docs/doc-adr/SKILL.md'},
+
+  {id:'doc-architecture',    slug:'skills/docs/doc-architecture',    title:'Architecture Doc', cat:'docs', phase:'Fase 4', level:'Praticante',
+   desc:'Documento técnico completo com diagrama C4, bounded contexts, fluxo de dados e referências aos ADRs que fundamentam cada decisão.',
+   obj:'Produzir referência técnica que elimine ambiguidade arquitetural para o time de implementação.',
+   inputs:['ADRs aprovados','Requisitos não funcionais (Discovery)'],
+   outputs:['Diagrama C4 (Context + Container em ASCII)','Bounded contexts com agregados e domain events','Fluxo de dados entre componentes'],
+   crit:['Diagrama atualizado a cada ADR aprovado','Camadas com responsabilidades claramente separadas','Dependências entre módulos documentadas com direção'],
+   prac:['Clean Architecture','SOLID','Observabilidade','Governança'],
+   gh:'packages/skills-catalog/skills/docs/doc-architecture/SKILL.md'},
+
+  {id:'doc-security',        slug:'skills/docs/doc-security',        title:'Security Doc',    cat:'docs', phase:'Fase 4', level:'Praticante',
+   desc:'Modelo de ameaças STRIDE, superfície de ataque, classificação de dados e controles de segurança por camada — antes de uma linha de código.',
+   obj:'Garantir que decisões de segurança sejam tomadas na arquitetura, não corrigidas no Validator.',
+   inputs:['Documento de arquitetura','Classificação dos dados manipulados (PII, sensível, público)'],
+   outputs:['Modelo de ameaças STRIDE por fluxo de dado','Controles de segurança por camada'],
+   crit:['STRIDE aplicado a todos os fluxos de dados','Classificação de dados documentada','Controles mapeados a cada ameaça identificada'],
+   prac:['Clean Architecture','Observabilidade','Governança'],
+   gh:'packages/skills-catalog/skills/docs/doc-security/SKILL.md'},
+
+  {id:'doc-code-style',      slug:'skills/docs/doc-code-style',      title:'Code Style',      cat:'docs', phase:'Fase 4', level:'Aprendiz',
+   desc:'Guia de estilo de código com Conventional Commits, naming conventions, regras de formatação e exemplos concretos de certo e errado.',
+   obj:'Garantir consistência de código entre sessões e entre membros do time, com exemplos que eliminam dúvida.',
+   inputs:['Stack tecnológica definida','Convenções de linguagem da equipe'],
+   outputs:['Guia de estilo em Markdown com exemplos de certo e errado','Conventional Commits com tipos e escopos definidos'],
+   crit:['Exemplos de certo e errado para cada regra','Conventional Commits com tipos e escopos definidos','Guia referenciado no README do repositório'],
+   prac:['Clean Architecture','Governança','Documentação Markdown'],
+   gh:'packages/skills-catalog/skills/docs/doc-code-style/SKILL.md'},
+
+  {id:'doc-changelog',       slug:'skills/docs/doc-changelog',       title:'Changelog',       cat:'docs', phase:'Fase 5', level:'Aprendiz',
+   desc:'Registro cronológico de mudanças por versão seguindo Keep a Changelog e Semantic Versioning — escrito para quem usa, não para quem desenvolveu.',
+   obj:'Produzir changelog que qualquer stakeholder leia e entenda sem conhecimento técnico do código.',
+   inputs:['Commits do período (Conventional Commits)','Versão anterior do changelog'],
+   outputs:['Changelog com seções Added/Changed/Fixed/Removed','Versão SemVer calculada corretamente (MAJOR/MINOR/PATCH)'],
+   crit:['Formato Keep a Changelog respeitado','SemVer calculado corretamente','Linguagem voltada para o usuário — não para o desenvolvedor'],
+   prac:['Governança','Documentação Markdown'],
+   gh:'packages/skills-catalog/skills/docs/doc-changelog/SKILL.md'},
+
+  {id:'doc-test-plan',       slug:'skills/docs/doc-test-plan',       title:'Test Plan',       cat:'docs', phase:'Fase 6', level:'Praticante',
+   desc:'Escopo, tipos de teste e critérios de entrada e saída da fase de validação — define o que será testado, como e com qual critério de aprovação.',
+   obj:'Garantir que a validação seja planejada antes de executada, com critérios aprovados pelo stakeholder.',
+   inputs:['User Stories com critérios Gherkin (Design)','Requisitos não funcionais (Discovery)'],
+   outputs:['Test Plan com escopo e tipos de teste (funcional, regressão, segurança, performance)','Critérios de entrada e saída (definition of done da validação)'],
+   crit:['Todos os tipos de teste identificados e justificados','Critérios de entrada e saída explícitos','Test Plan aprovado antes de iniciar execução'],
+   prac:['Observabilidade','Governança','Documentação Markdown'],
+   gh:'packages/skills-catalog/skills/docs/doc-test-plan/SKILL.md'},
+
+  {id:'doc-test-cases',      slug:'skills/docs/doc-test-cases',      title:'Test Cases',      cat:'docs', phase:'Fase 6', level:'Praticante',
+   desc:'Casos de teste derivados dos critérios Gherkin, com edge cases e cenários negativos para cada critério de aceite.',
+   obj:'Garantir cobertura de teste rastreável de volta para cada critério de aceite das User Stories.',
+   inputs:['User Stories com critérios Gherkin','Test Plan aprovado'],
+   outputs:['Test Cases com passos determinísticos de execução','Edge cases e cenários negativos por US'],
+   crit:['Todo critério Gherkin com pelo menos 1 test case','Edge cases para cenários críticos documentados','Passos determinísticos: qualquer pessoa consegue replicar'],
+   prac:['Observabilidade','Documentação Markdown'],
+   gh:'packages/skills-catalog/skills/docs/doc-test-cases/SKILL.md'},
+
+  {id:'doc-test-report',     slug:'skills/docs/doc-test-report',     title:'Test Report',     cat:'docs', phase:'Fase 6', level:'Praticante',
+   desc:'Resultado da execução dos testes com métricas de cobertura, bugs por severidade e recomendação explícita de go/no-go.',
+   obj:'Fornecer base objetiva para a decisão de avançar ou bloquear o Deploy.',
+   inputs:['Resultados de execução dos test cases','Relatório de segurança (Security)'],
+   outputs:['Test Report com taxa de casos passando e cobertura total','Recomendação explícita go/no-go com justificativa'],
+   crit:['Recomendação go/no-go com justificativa baseada em dado','Bugs por severidade documentados','Change Failure Rate calculada'],
+   prac:['Observabilidade','Governança','Documentação Markdown'],
+   gh:'packages/skills-catalog/skills/docs/doc-test-report/SKILL.md'},
+
+  {id:'doc-bug-report',      slug:'skills/docs/doc-bug-report',      title:'Bug Report',      cat:'docs', phase:'Fase 6', level:'Aprendiz',
+   desc:'Relatório de bug com passos determinísticos de reprodução, ambiente, severidade justificada e comportamento esperado vs. observado.',
+   obj:'Garantir que qualquer bug seja reproduzível por qualquer membro do time sem ajuda adicional.',
+   inputs:['Bug encontrado durante validação','Ambiente de teste (SO, browser, versão)'],
+   outputs:['Bug report com passos determinísticos de reprodução','Severidade com justificativa de impacto no usuário'],
+   crit:['Passos de reprodução replicáveis sem intervenção','Severidade justificada com impacto concreto','Comportamento esperado vs. observado documentado'],
+   prac:['Observabilidade','Documentação Markdown'],
+   gh:'packages/skills-catalog/skills/docs/doc-bug-report/SKILL.md'},
+
+  {id:'doc-deploy-plan',     slug:'skills/docs/doc-deploy-plan',     title:'Deploy Plan',     cat:'docs', phase:'Fase 7', level:'Regente',
+   desc:'Sequência de passos do deploy com responsável por etapa, validações intermediárias e critérios de conclusão bem-sucedida.',
+   obj:'Garantir deploy rastreável, sem improvisação e com validações em cada etapa.',
+   inputs:['Test Report com go-decision (Validator)','Infraestrutura de produção documentada'],
+   outputs:['Deploy Plan com sequência de passos e responsáveis','Validações intermediárias antes de avançar cada etapa'],
+   crit:['Cada passo com responsável nomeado','Validação intermediária documentada por etapa','Plano aprovado antes de qualquer ação em produção'],
+   prac:['Observabilidade','Governança','Documentação Markdown'],
+   gh:'packages/skills-catalog/skills/docs/doc-deploy-plan/SKILL.md'},
+
+  {id:'doc-rollback-plan',   slug:'skills/docs/doc-rollback-plan',   title:'Rollback Plan',   cat:'docs', phase:'Fase 7', level:'Regente',
+   desc:'Critérios objetivos de acionamento do rollback e passos testados para reverter o sistema ao estado anterior com segurança.',
+   obj:'Garantir que o time consiga acionar o rollback rapidamente sem improvisação em situação de incidente.',
+   inputs:['Deploy Plan','Estado anterior do sistema documentado'],
+   outputs:['Critérios objetivos de acionamento com thresholds numéricos (ex: error rate > 5%)','Sequência de passos testados para rollback'],
+   crit:['Critérios de acionamento com thresholds numéricos','Rollback testado em staging antes do deploy','Tempo estimado de rollback documentado'],
+   prac:['Observabilidade','Governança','Documentação Markdown'],
+   gh:'packages/skills-catalog/skills/docs/doc-rollback-plan/SKILL.md'},
+
+  {id:'doc-release-notes',   slug:'skills/docs/doc-release-notes',   title:'Release Notes',   cat:'docs', phase:'Fases 7+8', level:'Praticante',
+   desc:'Comunicado de versão escrito para o usuário final em linguagem de benefício — não de implementação técnica.',
+   obj:'Informar o usuário sobre o que mudou, melhorou e foi corrigido em linguagem que ele entende.',
+   inputs:['Changelog técnico (Builder)','Audiência alvo das release notes'],
+   outputs:['Release notes com seções Novo/Melhorado/Corrigido','Linguagem de benefício — não de implementação técnica'],
+   crit:['Linguagem voltada para o usuário','Benefícios concretos — sem nomes de features técnicas','Tom consistente com a identidade do produto'],
+   prac:['Documentação Markdown'],
+   gh:'packages/skills-catalog/skills/docs/doc-release-notes/SKILL.md'},
+
+  {id:'doc-runbook',         slug:'skills/docs/doc-runbook',         title:'Runbook',         cat:'docs', phase:'Fase 8', level:'Regente',
+   desc:'Guia operacional executável por qualquer membro do time — sem necessidade de conhecimento especial ou de acionar quem desenvolveu.',
+   obj:'Garantir que operações de rotina e resposta a incidentes possam ser executadas sem dependência do time de desenvolvimento.',
+   inputs:['Sistema em produção','Operações de rotina identificadas'],
+   outputs:['Runbook com procedimentos passo a passo','Pré-condições e pós-condições por procedimento','Referências a alertas e dashboards de monitoramento'],
+   crit:['Cada procedimento testado por quem não participou do desenvolvimento','Pré e pós-condições documentadas','Referências a alertas e dashboards incluídas'],
+   prac:['Observabilidade','Governança','Documentação Markdown'],
+   gh:'packages/skills-catalog/skills/docs/doc-runbook/SKILL.md'},
+
+  {id:'doc-postmortem',      slug:'skills/docs/doc-postmortem',      title:'Postmortem',      cat:'docs', phase:'Fase 8', level:'Regente',
+   desc:'Análise de incidente sem culpa com linha do tempo, causa raiz (5 Whys), impacto quantificado e ações corretivas com responsável e prazo.',
+   obj:'Transformar cada incidente em aprendizado documentado que previne recorrência e melhora o sistema.',
+   inputs:['Registro do incidente (alertas, logs)','Linha do tempo reconstituída'],
+   outputs:['Postmortem com causa raiz (5 Whys)','Impacto quantificado (usuários afetados, downtime, SLA impactado)','Ações corretivas com responsável e prazo'],
+   crit:['Análise blameless — foco no sistema, não em pessoas','Causa raiz identificada com 5 Whys ou equivalente','Ações corretivas com dono e prazo definidos'],
+   prac:['Observabilidade','Governança','Documentação Markdown'],
+   gh:'packages/skills-catalog/skills/docs/doc-postmortem/SKILL.md'},
+
+  {id:'doc-user-guide',      slug:'skills/docs/doc-user-guide',      title:'User Guide',      cat:'docs', phase:'Fase 8', level:'Praticante',
+   desc:'Guia do usuário final com exemplos reais, fluxos passo a passo e FAQ com as dúvidas mais comuns.',
+   obj:'Reduzir demanda de suporte e aumentar adoção ao entregar documentação que o usuário realmente usa.',
+   inputs:['Funcionalidades disponíveis no sistema','Personas e jornadas do usuário (Discovery/Design)'],
+   outputs:['Guia do usuário por funcionalidade com exemplos reais','FAQ com dúvidas mais comuns identificadas no suporte'],
+   crit:['Linguagem adequada à persona (técnica ou não técnica)','Exemplos reais com dados representativos','Atualizado a cada nova release'],
+   prac:['Documentação Markdown'],
+   gh:'packages/skills-catalog/skills/docs/doc-user-guide/SKILL.md'},
+
+  {id:'doc-knowledge-base',  slug:'skills/docs/doc-knowledge-base',  title:'Knowledge Base',  cat:'docs', phase:'Fase 8', level:'Praticante',
+   desc:'Base de conhecimento com artigos de troubleshooting, tutoriais avançados e respostas às perguntas recorrentes que chegam ao suporte.',
+   obj:'Criar repositório de conhecimento que escala o suporte sem escalar o time.',
+   inputs:['Tickets de suporte recorrentes','Runbook operacional'],
+   outputs:['Artigos de troubleshooting por categoria e nível de complexidade','Tutoriais de casos de uso avançados'],
+   crit:['Artigos organizados por categoria','Taxa de resolução sem escalonamento monitorada','Atualizado quando nova causa raiz é identificada no Postmortem'],
+   prac:['Observabilidade','Documentação Markdown'],
+   gh:'packages/skills-catalog/skills/docs/doc-knowledge-base/SKILL.md'},
+
+  /* ── BACKLOG V2 — 5 novas skills ───────────────────────── */
+  {id:'doc-sprint-plan',  slug:'skills/docs/doc-sprint-plan',  title:'Sprint Plan',  cat:'docs', phase:'Fase 1 / Fase 5', level:'Praticante',
+   desc:'Transforma backlog priorizado em plano de sprint executável: sprint goal orientado a negócio, capacidade calculada, DoD técnico e funcional, riscos e itens diferidos.',
+   obj:'Garantir que o time entre no sprint com compromisso realista, critérios de conclusão definidos e riscos mapeados.',
+   inputs:['Backlog priorizado (output de doc-work-breakdown)','Membros do time com disponibilidade em dias','Duração do sprint em dias úteis','Velocidade histórica dos últimos 3 sprints (opcional)'],
+   outputs:['Sprint goal em frase orientada a resultado de negócio','Tabela de capacidade com person-days e overhead descontado','Lista de itens comprometidos com owner e estimativa','Definition of Done técnico e funcional','Tabela de riscos e dependências','Lista de itens diferidos com justificativa'],
+   crit:['Sprint goal não menciona tarefa técnica — descreve resultado para o usuário','Capacidade total está entre 75% e 90% da capacidade bruta','Cada item comprometido tem owner nomeado','DoD inclui critério técnico (testes) e funcional (demo)','Itens diferidos têm justificativa documentada'],
+   prac:['Governança','Observabilidade','Documentação Markdown'],
+   gh:'packages/skills-catalog/skills/docs/doc-sprint-plan/SKILL.md'},
+
+  {id:'doc-retrospective',  slug:'skills/docs/doc-retrospective',  title:'Retrospectiva',  cat:'docs', phase:'Fase 8', level:'Praticante',
+   desc:'Estrutura a retrospectiva de sprint em 4 quadrantes com health check do time, tendência de velocidade e action items com owner e prazo — foco em melhoria contínua, não em reclamações.',
+   obj:'Produzir documento de melhoria contínua com action items concretos e verificáveis na próxima retrospectiva.',
+   inputs:['Dados do sprint: goal atingido ou não, velocity planejada vs. realizada','Action items da retrospectiva anterior','Avaliações do time por dimensão (opcional)'],
+   outputs:['4 quadrantes: went well, didn\'t go well, insights, action items','Health check em 5 dimensões (escala 1–5)','Tabela de tendência de velocidade (3 sprints)','Revisão dos action items anteriores','Action items do sprint com owner, prazo e critério de feito'],
+   crit:['Cada action item tem owner nomeado e data de verificação','Nenhum action item é vago — descreve comportamento ou entregável concreto','Revisão de action items anteriores está presente','Quadrantes têm observações específicas do sprint — não genéricas'],
+   prac:['Governança','Observabilidade','Documentação Markdown'],
+   gh:'packages/skills-catalog/skills/docs/doc-retrospective/SKILL.md'},
+
+  {id:'doc-data-model',  slug:'skills/docs/doc-data-model',  title:'Data Model',  cat:'docs', phase:'Fase 4', level:'Praticante',
+   desc:'Documenta o modelo de dados do domínio: entidades nomeadas em linguagem de negócio, atributos com tipo e restrições, relacionamentos com cardinalidade e diagrama Mermaid ER.',
+   obj:'Produzir a ponte entre a linguagem ubíqua do Discovery e o schema técnico usado no banco — sem nomes técnicos nas entidades.',
+   inputs:['Relatório de discovery com glossário de linguagem ubíqua','Requisitos funcionais ou user stories','Schema existente (opcional, para sistemas legados)','Nome do bounded context (opcional)'],
+   outputs:['Catálogo de entidades com responsabilidade e bounded context','Especificação de atributos com tipo, obrigatoriedade e restrições','Mapa de relacionamentos com cardinalidade e semântica','Regras de domínio (invariantes, valores calculados, transições de estado)','Diagrama ER em Mermaid','Alinhamento com glossário de linguagem ubíqua'],
+   crit:['Nenhuma entidade nomeada com termo técnico — nomes derivam do glossário ubíquo','Todas as cardinalidades documentadas com semântica em linguagem de negócio','Regras de domínio expressas como restrições — nunca como SQL ou código','Diagrama ER presente e consistente com o catálogo'],
+   prac:['DDD','Clean Architecture','Governança','Documentação Markdown'],
+   gh:'packages/skills-catalog/skills/docs/doc-data-model/SKILL.md'},
+
+  {id:'doc-api-contract',  slug:'skills/docs/doc-api-contract',  title:'API Contract',  cat:'docs', phase:'Fase 4 / Fase 5', level:'Praticante',
+   desc:'Especifica o contrato de API REST ou event-driven além do boilerplate OpenAPI: catálogo de endpoints, schemas com exemplos, taxonomia de erros, versionamento, rate limiting e política de breaking changes.',
+   obj:'Produzir contrato que permite integração, tratamento de falhas e planejamento de migração sem acessar o código ou abrir chamado.',
+   inputs:['Requisitos, user stories ou ADRs que descrevem as capacidades','Documento de arquitetura','Contrato da versão anterior (obrigatório se versão > v1)','Tipo de API: rest ou event-driven'],
+   outputs:['Visão geral da API com estilo arquitetural e audiência','Catálogo de endpoints com verb, path, descrição e autenticação','Schemas de request e response com exemplos e regras de validação','Taxonomia de erros com HTTP status, código, mensagem e ação corretiva','Estratégia de versionamento com política de breaking change','Changelog com migrações de versões anteriores (quando aplicável)'],
+   crit:['Cada endpoint tem pelo menos uma resposta de erro documentada com código e ação','Versão está na URL ou no header — sem versionamento implícito','Campos string têm minLength/maxLength','Breaking change policy documenta prazo de deprecação'],
+   prac:['Clean Architecture','Governança','Observabilidade','Documentação Markdown'],
+   gh:'packages/skills-catalog/skills/docs/doc-api-contract/SKILL.md'},
+
+  {id:'judge',  slug:'judge',  title:'Judge',  cat:'quality', phase:'Transversal', level:'Regente',
+   desc:'Componente central de verificação: recebe qualquer artefato + nome da skill + nível Maestro e emite Relatório de Verificação com veredicto APROVADO / APROVADO COM RESSALVAS / BLOQUEADO com citação do critério e trecho específico.',
+   obj:'Verificar cada artefato contra o critério de sucesso da skill que o produziu — nunca aprovar com FAIL, nunca bloquear com motivo genérico.',
+   inputs:['Artefato completo (Markdown ou código)','Nome exato da skill que produziu o artefato','Nível Maestro do Consultor de IA','Contexto adicional do sistema (opcional)'],
+   outputs:['Relatório de Verificação com veredicto explícito','Tabela de critérios: PASS ou FAIL com evidência e trecho citado','Para BLOQUEADO: ação corretiva concreta com exemplo'],
+   crit:['Veredicto APROVADO só emitido quando todos os critérios passam','Veredicto BLOQUEADO inclui trecho exato do artefato que falhou','Nenhum motivo de bloqueio genérico — sempre nomeia o critério específico','Nome de skill desconhecido resulta em bloqueio imediato'],
+   prac:['Governança','DDD','Observabilidade','Documentação Markdown'],
+   gh:'packages/skills-catalog/judge/SKILL.md'}
+];
+
+/* ── FILTER STATE ────────────────────────────────────────── */
+let cat = 'all', level = '', q = '';
+
+function filtered() {
+  return S.filter(s => {
+    const mc = cat === 'all' || s.cat === cat;
+    const ml = !level || s.level === level;
+    const ql = q.toLowerCase();
+    const mq = !ql || s.title.toLowerCase().includes(ql)
+      || s.slug.toLowerCase().includes(ql)
+      || s.desc.toLowerCase().includes(ql)
+      || s.phase.toLowerCase().includes(ql)
+      || (s.prac||[]).join(' ').toLowerCase().includes(ql);
+    return mc && ml && mq;
+  });
+}
+
+/* ── RENDER GRID ─────────────────────────────────────────── */
+const lvlClass = {Aprendiz:'l-aprendiz',Praticante:'l-praticante',Regente:'l-regente',Maestro:'l-maestro'};
+const catLabel = {sdlc:'SDLC',quality:'Qualidade',docs:'Docs'};
+
+function render() {
+  const vis = filtered();
+  document.getElementById('rcount').textContent =
+    vis.length === 43 ? '43 skills' : `${vis.length} skill${vis.length !== 1 ? 's' : ''} encontrada${vis.length !== 1 ? 's' : ''}`;
+
+  document.getElementById('grid').innerHTML = vis.length ? vis.map(s => `
+    <div class="card c-${s.cat}" onclick="open_('${s.id}')">
+      <div class="card-body">
+        <div class="card-meta">
+          <span class="cat-label">${catLabel[s.cat]}</span>
+          <span class="meta-dot"></span>
+          <span class="phase-label">${s.phase}</span>
+        </div>
+        <div class="card-title">${s.title}</div>
+        <div class="card-slug">${s.slug}</div>
+        <div class="card-desc">${s.desc}</div>
+      </div>
+      <div class="card-footer">
+        <span class="level-badge ${lvlClass[s.level]}">${s.level}</span>
+        <span class="card-cta">Ver skill</span>
+      </div>
+    </div>`).join('')
+  : `<div class="empty-state"><p>Nenhuma skill encontrada</p><small>Tente outro termo ou remova os filtros</small></div>`;
+}
+
+/* ── FILTERS ─────────────────────────────────────────────── */
+document.querySelectorAll('.pill[data-cat]').forEach(b => b.onclick = () => {
+  document.querySelectorAll('.pill[data-cat]').forEach(x => x.classList.remove('active'));
+  b.classList.add('active'); cat = b.dataset.cat; render();
+});
+document.querySelectorAll('.pill[data-level]').forEach(b => b.onclick = () => {
+  const same = b.classList.contains('active');
+  document.querySelectorAll('.pill[data-level]').forEach(x => x.classList.remove('active'));
+  level = same ? '' : b.dataset.level;
+  if (!same) b.classList.add('active');
+  render();
+});
+document.getElementById('q').oninput = e => {
+  q = e.target.value;
+  document.getElementById('qclear').classList.toggle('on', !!q);
+  render();
+};
+function clearQ() {
+  document.getElementById('q').value = ''; q = '';
+  document.getElementById('qclear').classList.remove('on');
+  render();
+}
+
+/* ── DRAWER ──────────────────────────────────────────────── */
+const dpillClass = {sdlc:'dp-sdlc',quality:'dp-quality',docs:'dp-docs',
+  Aprendiz:'dp-aprendiz',Praticante:'dp-praticante',Regente:'dp-regente'};
+
+function open_(id) {
+  const s = S.find(x => x.id === id);
+  if (!s) return;
+  const dr = document.getElementById('drawer');
+  dr.className = `drawer d-${s.cat}`;
+  document.getElementById('d-title').textContent = s.title;
+  document.getElementById('d-slug').textContent = s.slug;
+  document.getElementById('d-desc').textContent = s.obj;
+  document.getElementById('d-pills').innerHTML = `
+    <span class="dpill ${dpillClass[s.cat]}">${catLabel[s.cat]}</span>
+    <span class="dpill ${dpillClass[s.level]}">${s.level}</span>
+    <span class="dpill dp-neutral">${s.phase}</span>`;
+  document.getElementById('d-meta').innerHTML = `
+    <div class="meta-cell"><div class="mc-k">Categoria</div><div class="mc-v">${catLabel[s.cat]}</div></div>
+    <div class="meta-cell"><div class="mc-k">Fase</div><div class="mc-v">${s.phase}</div></div>
+    <div class="meta-cell"><div class="mc-k">Nível mínimo</div><div class="mc-v">${s.level}</div></div>
+    <div class="meta-cell"><div class="mc-k">Provedores LLM</div><div class="mc-v">Claude · GPT-4o · Gemini</div></div>`;
+  document.getElementById('d-io').innerHTML =
+    (s.inputs||[]).map(x=>`<div class="io-row"><span class="io-tag io-in">Entrada</span>${x}</div>`).join('')+
+    (s.outputs||[]).map(x=>`<div class="io-row"><span class="io-tag io-out">Saída</span>${x}</div>`).join('');
+  document.getElementById('d-crit').innerHTML = (s.crit||[]).map(c=>`<div class="crit-row">${c}</div>`).join('');
+  document.getElementById('d-prac').innerHTML = (s.prac||[]).map(p=>`<span class="prac-chip">${p}</span>`).join('');
+  document.getElementById('d-gh').href = `https://github.com/analimatech-svg/agentictech/blob/main/${s.gh}`;
+  document.getElementById('overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function close_() {
+  document.getElementById('overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function maybeClose(e) { if (e.target === document.getElementById('overlay')) close_(); }
+document.addEventListener('keydown', e => { if (e.key === 'Escape') close_(); });
+
+/* ── THEME ───────────────────────────────────────────────── */
+function toggleTheme() {
+  const html = document.documentElement;
+  const dark = html.getAttribute('data-theme') === 'dark';
+  html.setAttribute('data-theme', dark ? 'light' : 'dark');
+  localStorage.setItem('mt-theme', dark ? 'light' : 'dark');
+}
+const saved = localStorage.getItem('mt-theme');
+if (saved) document.documentElement.setAttribute('data-theme', saved);
+
+render();
+</script>
+</body>
+</html>
