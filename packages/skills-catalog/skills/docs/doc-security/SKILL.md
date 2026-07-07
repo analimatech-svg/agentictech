@@ -8,7 +8,7 @@
 | Categoria | docs |
 | Nível mínimo Maestro | Praticante |
 | Provedor LLM | Qualquer (Claude, GPT-4o, Gemini) |
-| Versão | 1.0.0 |
+| Versão | 1.1.0 |
 
 ## Objetivo
 
@@ -16,13 +16,13 @@ Gerar o documento de segurança do sistema, cobrindo modelo de ameaças, superf�
 
 ## Input
 
-| Campo | Obrigatório | Descrição |
-|---|---|---|
-| arquitetura_tecnica | Sim | Documento de arquitetura com componentes, fluxo de dados e dependências externas |
-| dados_tratados | Sim | Lista dos tipos de dados que o sistema processa, armazena ou transmite |
-| fluxo_autenticacao | Sim | Como usuários e serviços se autenticam no sistema (JWT, OAuth 2.0, API Key, etc.) |
-| fluxo_autorizacao | Sim | Como permissões são concedidas e verificadas (RBAC, ABAC, ACL, etc.) |
-| compliance | Não | Regulamentações aplicáveis (LGPD, GDPR, PCI-DSS, SOC 2, ISO 27001) |
+| Campo | Tipo | Obrigatório | Descrição |
+|---|---|---|---|
+| arquitetura_tecnica | string (Markdown) | Sim | Documento de arquitetura com componentes, fluxo de dados e dependências externas |
+| dados_tratados | lista de strings | Sim | Lista dos tipos de dados que o sistema processa, armazena ou transmite |
+| fluxo_autenticacao | string | Sim | Como usuários e serviços se autenticam no sistema (JWT, OAuth 2.0, API Key, etc.) |
+| fluxo_autorizacao | string | Sim | Como permissões são concedidas e verificadas (RBAC, ABAC, ACL, etc.) |
+| compliance | lista de strings | Não | Regulamentações aplicáveis (LGPD, GDPR, PCI-DSS, SOC 2, ISO 27001) |
 
 ## Output
 

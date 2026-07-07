@@ -8,7 +8,7 @@
 | Categoria | docs |
 | Nível mínimo Maestro | Praticante |
 | Provedor LLM | Qualquer (Claude, GPT-4o, Gemini) |
-| Versão | 1.0.0 |
+| Versão | 1.1.0 |
 
 ## Objetivo
 
@@ -16,11 +16,11 @@ Gerar os casos de teste derivados dos critérios de aceitação Gherkin das User
 
 ## Input
 
-| Campo | Obrigatório | Descrição |
-|---|---|---|
-| user_stories | Sim | User Stories com critérios de aceitação no formato Gherkin (Given/When/Then) |
-| plano_testes | Sim | Plano de testes com escopo e tipos de teste definidos |
-| sistema_descricao | Não | Descrição do comportamento atual do sistema, para identificar regressões possíveis |
+| Campo | Tipo | Obrigatório | Descrição |
+|---|---|---|---|
+| user_stories | string (Markdown) | Sim | User Stories com critérios de aceitação no formato Gherkin (Given/When/Then) |
+| plano_testes | string (Markdown) | Sim | Plano de testes com escopo e tipos de teste definidos |
+| sistema_descricao | string | Não | Descrição do comportamento atual do sistema, para identificar regressões possíveis |
 
 ## Output
 

@@ -8,7 +8,7 @@
 | Categoria | docs |
 | Nível mínimo Maestro | Aprendiz |
 | Provedor LLM | Qualquer (Claude, GPT-4o, Gemini) |
-| Versão | 1.0.0 |
+| Versão | 1.1.0 |
 
 ## Objetivo
 
@@ -16,13 +16,13 @@ Gerar um relatório de bug estruturado, com passos reproduzíveis, severidade ju
 
 ## Input
 
-| Campo | Obrigatório | Descrição |
-|---|---|---|
-| descricao_bug | Sim | Descrição do comportamento inesperado observado |
-| passos_observados | Sim | O que o testador fez até encontrar o problema |
-| ambiente | Sim | Sistema operacional, navegador ou versão do app, ambiente (staging, produção) |
-| evidencias | Não | Log de erro, mensagem exibida na tela, screenshot ou gravação de tela |
-| requisito_referencia | Não | ID da User Story ou requisito que define o comportamento correto |
+| Campo | Tipo | Obrigatório | Descrição |
+|---|---|---|---|
+| descricao_bug | string | Sim | Descrição do comportamento inesperado observado |
+| passos_observados | lista de strings | Sim | O que o testador fez até encontrar o problema |
+| ambiente | string | Sim | Sistema operacional, navegador ou versão do app, ambiente (staging, produção) |
+| evidencias | lista de strings | Não | Log de erro, mensagem exibida na tela, screenshot ou gravação de tela |
+| requisito_referencia | string | Não | ID da User Story ou requisito que define o comportamento correto |
 
 ## Output
 
@@ -47,6 +47,17 @@ Include the following fields:
 - User impact: who is affected and what they cannot do
 
 Language: Brazilian Portuguese
+
+ANTI-PATTERNS — apply blocking rules:
+- BLOCKED if: the steps to reproduce do not start from a known, explicit system state
+  ❌ "1. Acessar o sistema. 2. Fazer login. 3. O erro aparece."
+  ✅ "Pré-condição: usuário com perfil 'Gerente' logado, sem pedidos em aberto. 1. Acessar Menu > Pedidos > Novo Pedido. 2. Adicionar 3 itens ao carrinho (SKU-001, SKU-002, SKU-003). 3. Clicar em 'Finalizar Pedido'. Resultado: tela congela e exibe a mensagem 'Erro interno 500' após 8 segundos."
+- BLOCKED if: the severity has no justification grounded in user impact or occurrence frequency
+  ❌ "Severidade: Alta."
+  ✅ "Severidade: Alta — justificativa: bloqueia o fluxo principal de criação de pedidos para todos os usuários com perfil 'Gerente' (aproximadamente 40 usuários ativos). Ocorre em 100% das tentativas no ambiente de staging. Sem workaround disponível."
+- BLOCKED if: the expected behavior is stated as personal opinion rather than tied to a requirement or acceptance criterion
+  ❌ "Comportamento esperado: o sistema deveria aceitar o pedido normalmente."
+  ✅ "Comportamento esperado: conforme critério de aceitação da US-142 — 'Dado que o usuário adiciona itens com estoque disponível, quando clicar em Finalizar Pedido, então o pedido é criado com status Pendente e o usuário é redirecionado para a tela de confirmação'."
 ```
 
 ## Critério de sucesso

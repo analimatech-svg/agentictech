@@ -8,7 +8,7 @@
 | Categoria | docs |
 | Nível mínimo Maestro | Aprendiz |
 | Provedor LLM | Qualquer (Claude, GPT-4o, Gemini) |
-| Versão | 1.0.0 |
+| Versão | 1.1.0 |
 
 ## Objetivo
 
@@ -16,13 +16,13 @@ Gerar o changelog de uma release seguindo o padrão Keep a Changelog, com lingua
 
 ## Input
 
-| Campo | Obrigatório | Descrição |
-|---|---|---|
-| lista_commits | Sim | Lista de commits no formato Conventional Commits (feat, fix, chore, refactor, etc.) |
-| versao_anterior | Sim | Versão que estava em produção antes desta release (ex: 1.4.2) |
-| versao_atual | Sim | Versão que será publicada nesta release (ex: 1.5.0) |
-| data_release | Sim | Data de publicação no formato YYYY-MM-DD |
-| nome_produto | Não | Nome do produto ou sistema, para contextualizar o documento |
+| Campo | Tipo | Obrigatório | Descrição |
+|---|---|---|---|
+| lista_commits | lista de strings | Sim | Lista de commits no formato Conventional Commits (feat, fix, chore, refactor, etc.) |
+| versao_anterior | string | Sim | Versão que estava em produção antes desta release (ex: 1.4.2) |
+| versao_atual | string | Sim | Versão que será publicada nesta release (ex: 1.5.0) |
+| data_release | string | Sim | Data de publicação no formato YYYY-MM-DD |
+| nome_produto | string | Não | Nome do produto ou sistema, para contextualizar o documento |
 
 ## Output
 

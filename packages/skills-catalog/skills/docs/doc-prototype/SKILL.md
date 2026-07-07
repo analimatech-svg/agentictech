@@ -8,7 +8,7 @@
 | Categoria | docs |
 | Nível mínimo Maestro | Praticante |
 | Provedor LLM | Qualquer (Claude, GPT-4o, Gemini) |
-| Versão | 1.0.0 |
+| Versão | 1.1.0 |
 
 ## Objetivo
 
@@ -16,12 +16,12 @@ Gerar o roteiro de prototipagem navegável, especificando quais fluxos cobrir, o
 
 ## Input
 
-| Campo | Obrigatório | Descrição |
-|---|---|---|
-| mockup_aprovado | Sim | Especificação visual completa das telas, com componentes e estados definidos |
-| user_stories_priorizadas | Sim | Lista de User Stories ordenadas por prioridade para determinar quais fluxos o protótipo deve cobrir |
-| cenarios_validacao | Sim | Cenários que serão testados com usuários: hipóteses a validar e métricas de sucesso |
-| ferramenta_prototipagem | Não | Ferramenta onde o protótipo será construído (Figma, InVision, Marvel, Axure) |
+| Campo | Tipo | Obrigatório | Descrição |
+|---|---|---|---|
+| mockup_aprovado | string (Markdown) | Sim | Especificação visual completa das telas, com componentes e estados definidos |
+| user_stories_priorizadas | lista de strings | Sim | Lista de User Stories ordenadas por prioridade para determinar quais fluxos o protótipo deve cobrir |
+| cenarios_validacao | lista de strings | Sim | Cenários que serão testados com usuários: hipóteses a validar e métricas de sucesso |
+| ferramenta_prototipagem | enum: Figma | InVision | Marvel | Axure | Não | Ferramenta onde o protótipo será construído (Figma, InVision, Marvel, Axure) |
 
 ## Output
 

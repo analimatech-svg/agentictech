@@ -8,7 +8,7 @@
 | Categoria | docs |
 | Nível mínimo Maestro | Praticante |
 | Provedor LLM | Qualquer (Claude, GPT-4o, Gemini) |
-| Versão | 1.0.0 |
+| Versão | 1.1.0 |
 
 ## Objetivo
 
@@ -16,13 +16,13 @@ Gerar o plano de testes de uma funcionalidade ou release, definindo escopo, tipo
 
 ## Input
 
-| Campo | Obrigatório | Descrição |
-|---|---|---|
-| requisitos | Sim | Requisitos funcionais e não funcionais da funcionalidade ou release |
-| user_stories | Sim | User Stories com critérios de aceitação no formato Gherkin (Given/When/Then) |
-| arquitetura | Sim | Descrição da arquitetura técnica: serviços, banco de dados, integrações externas |
-| ambientes_disponiveis | Não | Ambientes disponíveis para teste (dev, staging, homologação, produção) |
-| equipe | Não | Nomes e papéis dos membros da equipe de testes |
+| Campo | Tipo | Obrigatório | Descrição |
+|---|---|---|---|
+| requisitos | string (Markdown) | Sim | Requisitos funcionais e não funcionais da funcionalidade ou release |
+| user_stories | string (Markdown) | Sim | User Stories com critérios de aceitação no formato Gherkin (Given/When/Then) |
+| arquitetura | string (Markdown) | Sim | Descrição da arquitetura técnica: serviços, banco de dados, integrações externas |
+| ambientes_disponiveis | lista de strings | Não | Ambientes disponíveis para teste (dev, staging, homologação, produção) |
+| equipe | lista de strings | Não | Nomes e papéis dos membros da equipe de testes |
 
 ## Output
 
@@ -45,6 +45,17 @@ Include the following sections:
 6. Responsible parties: who executes and who approves each test type
 
 Language: Brazilian Portuguese
+
+ANTI-PATTERNS — apply blocking rules:
+- BLOCKED if: entry or exit criteria are not measurable (contain words like "suficiente", "adequado", "estável")
+  ❌ "Critério de saída: testes concluídos e sistema estável."
+  ✅ "Critério de saída: 95% dos casos de teste passando, zero bugs de severidade crítica em aberto, tempo de resposta p95 abaixo de 400ms no ambiente de homologação com carga de 100 usuários simultâneos."
+- BLOCKED if: a test type has no defined minimum coverage
+  ❌ "Testes de regressão serão executados conforme disponibilidade da equipe."
+  ✅ "Testes de regressão: 100% dos casos do suite core (45 casos) + 80% dos casos das funcionalidades adjacentes modificadas (estimado: 12 casos)."
+- BLOCKED if: any test type has no named responsible party
+  ❌ "Testes de performance serão feitos pelo time."
+  ✅ "Testes de performance: execução — Carla Mendes (QA Sênior); aprovação — Roberto Lima (Tech Lead)."
 ```
 
 ## Critério de sucesso

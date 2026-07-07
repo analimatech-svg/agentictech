@@ -8,7 +8,7 @@
 | Categoria | docs |
 | Nível mínimo Maestro | Regente |
 | Provedor LLM | Qualquer (Claude, GPT-4o, Gemini) |
-| Versão | 1.0.0 |
+| Versão | 1.1.0 |
 
 ## Objetivo
 
@@ -16,13 +16,13 @@ Gerar o plano de deploy com sequência de passos, validações intermediárias, 
 
 ## Input
 
-| Campo | Obrigatório | Descrição |
-|---|---|---|
-| software_validado | Sim | Descrição do software que será publicado (versão, artefatos gerados, resultado dos testes) |
-| arquitetura | Sim | Arquitetura de infraestrutura: servidores, banco de dados, serviços externos, CDN, filas |
-| historico_deploys | Não | Registro de deploys anteriores: problemas encontrados, tempo médio de execução, itens de atenção |
-| janela_manutencao | Não | Janela de manutenção proposta (horário, duração máxima, critério de cancelamento) |
-| equipe | Não | Nomes e papéis dos responsáveis pelo deploy |
+| Campo | Tipo | Obrigatório | Descrição |
+|---|---|---|---|
+| software_validado | string | Sim | Descrição do software que será publicado (versão, artefatos gerados, resultado dos testes) |
+| arquitetura | string (Markdown) | Sim | Arquitetura de infraestrutura: servidores, banco de dados, serviços externos, CDN, filas |
+| historico_deploys | string (Markdown) | Não | Registro de deploys anteriores: problemas encontrados, tempo médio de execução, itens de atenção |
+| janela_manutencao | objeto | Não | Janela de manutenção proposta (horário, duração máxima, critério de cancelamento) |
+| equipe | lista de strings | Não | Nomes e papéis dos responsáveis pelo deploy |
 
 ## Output
 

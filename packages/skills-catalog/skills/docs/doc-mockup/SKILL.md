@@ -8,7 +8,7 @@
 | Categoria | docs |
 | Nível mínimo Maestro | Praticante |
 | Provedor LLM | Qualquer (Claude, GPT-4o, Gemini) |
-| Versão | 1.0.0 |
+| Versão | 1.1.0 |
 
 ## Objetivo
 
@@ -16,12 +16,12 @@ Gerar a especificação visual completa de cada tela do sistema, incluindo cores
 
 ## Input
 
-| Campo | Obrigatório | Descrição |
-|---|---|---|
-| wireframe_aprovado | Sim | Wireframe validado contendo a estrutura e hierarquia de cada tela |
-| guia_estilo | Não | Documento de identidade visual com paleta de cores, tipografia e tokens de design |
-| identidade_visual | Não | Logotipo, cores da marca e referências visuais do produto ou empresa |
-| ferramenta_alvo | Não | Ferramenta onde o mockup será criado (Figma, Sketch, Adobe XD) |
+| Campo | Tipo | Obrigatório | Descrição |
+|---|---|---|---|
+| wireframe_aprovado | string (Markdown) | Sim | Wireframe validado contendo a estrutura e hierarquia de cada tela |
+| guia_estilo | string (Markdown) | Não | Documento de identidade visual com paleta de cores, tipografia e tokens de design |
+| identidade_visual | string | Não | Logotipo, cores da marca e referências visuais do produto ou empresa |
+| ferramenta_alvo | enum: Figma | Sketch | Adobe XD | Não | Ferramenta onde o mockup será criado (Figma, Sketch, Adobe XD) |
 
 ## Output
 

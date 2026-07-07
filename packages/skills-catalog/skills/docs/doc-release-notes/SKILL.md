@@ -8,7 +8,7 @@
 | Categoria | docs |
 | Nível mínimo Maestro | Aprendiz |
 | Provedor LLM | Qualquer (Claude, GPT-4o, Gemini) |
-| Versão | 1.0.0 |
+| Versão | 1.1.0 |
 
 ## Objetivo
 
@@ -16,13 +16,13 @@ Gerar um comunicado claro e acessível sobre uma nova versão do sistema, destac
 
 ## Input
 
-| Campo | Obrigatório | Descrição |
-|---|---|---|
-| changelog_tecnico | Sim | Lista de mudanças na versão, gerada pelo time de desenvolvimento |
-| versao | Sim | Número da versão no formato semântico (ex: 2.3.1) |
-| data_lancamento | Sim | Data de lançamento da versão (formato AAAA-MM-DD) |
-| publico_alvo | Sim | Destinatário do comunicado: usuário final, parceiros ou interno |
-| itens_alpha_beta | Não | Lista de funcionalidades em fase experimental com aviso de estabilidade |
+| Campo | Tipo | Obrigatório | Descrição |
+|---|---|---|---|
+| changelog_tecnico | lista de strings | Sim | Lista de mudanças na versão, gerada pelo time de desenvolvimento |
+| versao | string | Sim | Número da versão no formato semântico (ex: 2.3.1) |
+| data_lancamento | string | Sim | Data de lançamento da versão (formato AAAA-MM-DD) |
+| publico_alvo | enum: usuário final \| parceiros \| interno | Sim | Destinatário do comunicado: usuário final, parceiros ou interno |
+| itens_alpha_beta | lista de strings | Não | Lista de funcionalidades em fase experimental com aviso de estabilidade |
 
 ## Output
 
@@ -52,6 +52,17 @@ Context:
 - Alpha/beta items: {itens_alpha_beta}
 
 Language: Brazilian Portuguese
+
+ANTI-PATTERNS — apply blocking rules:
+- BLOCKED if: any item describes what the team did instead of what the user gains
+  ❌ "Refatoramos o módulo de autenticação para usar JWT."
+  ✅ "O login agora é mais rápido e sua sessão permanece ativa por até 7 dias sem precisar entrar com senha novamente."
+- BLOCKED if: a technical term appears without plain-language explanation
+  ❌ "Corrigimos a race condition no endpoint de webhooks."
+  ✅ "Corrigimos uma falha que causava duplicação de notificações quando dois eventos chegavam ao mesmo tempo (sincronização de dados)."
+- BLOCKED if: an alpha or beta item has no explicit stability warning
+  ❌ "Nova funcionalidade: exportação para PDF (beta)."
+  ✅ "Nova funcionalidade: exportação para PDF — BETA. Esta funcionalidade está em fase experimental e pode apresentar instabilidades. Use em ambientes não críticos e reporte problemas pelo canal de suporte."
 ```
 
 ## Critério de sucesso

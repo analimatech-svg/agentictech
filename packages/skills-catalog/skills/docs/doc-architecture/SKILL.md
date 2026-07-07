@@ -8,7 +8,7 @@
 | Categoria | docs |
 | Nível mínimo Maestro | Praticante |
 | Provedor LLM | Qualquer (Claude, GPT-4o, Gemini) |
-| Versão | 1.0.0 |
+| Versão | 1.1.0 |
 
 ## Objetivo
 
@@ -16,13 +16,13 @@ Gerar o documento de arquitetura técnica do sistema, cobrindo visão geral, com
 
 ## Input
 
-| Campo | Obrigatório | Descrição |
-|---|---|---|
-| requisitos | Sim | Requisitos funcionais e não funcionais do sistema |
-| stack_tecnologica | Sim | Linguagens, frameworks, bancos de dados, serviços de nuvem e ferramentas adotadas |
-| contexto_negocio | Sim | Domínio de negócio, bounded contexts e principais entidades do sistema |
-| adrs_existentes | Não | ADRs já registrados que registram decisões de arquitetura relevantes |
-| restricoes | Não | Restrições de performance, segurança, custo ou compliance que moldam a arquitetura |
+| Campo | Tipo | Obrigatório | Descrição |
+|---|---|---|---|
+| requisitos | string (Markdown) | Sim | Requisitos funcionais e não funcionais do sistema |
+| stack_tecnologica | string | Sim | Linguagens, frameworks, bancos de dados, serviços de nuvem e ferramentas adotadas |
+| contexto_negocio | string | Sim | Domínio de negócio, bounded contexts e principais entidades do sistema |
+| adrs_existentes | string (Markdown) | Não | ADRs já registrados que registram decisões de arquitetura relevantes |
+| restricoes | lista de strings | Não | Restrições de performance, segurança, custo ou compliance que moldam a arquitetura |
 
 ## Output
 

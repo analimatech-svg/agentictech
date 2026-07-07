@@ -8,7 +8,7 @@
 | Categoria | docs |
 | Nível mínimo Maestro | Regente |
 | Provedor LLM | Qualquer (Claude, GPT-4o, Gemini) |
-| Versão | 1.0.0 |
+| Versão | 1.1.0 |
 
 ## Objetivo
 
@@ -16,12 +16,12 @@ Gerar o plano de rollback com critérios objetivos de acionamento, sequência de
 
 ## Input
 
-| Campo | Obrigatório | Descrição |
-|---|---|---|
-| plano_deploy | Sim | Plano de deploy correspondente, com etapas e validações definidas |
-| arquitetura | Sim | Arquitetura de infraestrutura: servidores, banco de dados, serviços externos |
-| versao_estavel_anterior | Sim | Versão que estava em produção antes do deploy (artefato, tag ou branch) |
-| historico_rollbacks | Não | Registro de rollbacks anteriores: problemas encontrados e lições aprendidas |
+| Campo | Tipo | Obrigatório | Descrição |
+|---|---|---|---|
+| plano_deploy | string (Markdown) | Sim | Plano de deploy correspondente, com etapas e validações definidas |
+| arquitetura | string (Markdown) | Sim | Arquitetura de infraestrutura: servidores, banco de dados, serviços externos |
+| versao_estavel_anterior | string | Sim | Versão que estava em produção antes do deploy (artefato, tag ou branch) |
+| historico_rollbacks | string (Markdown) | Não | Registro de rollbacks anteriores: problemas encontrados e lições aprendidas |
 
 ## Output
 
@@ -49,6 +49,17 @@ Notes:
 - Database rollback steps must be explicit about migration reversibility
 
 Language: Brazilian Portuguese
+
+ANTI-PATTERNS — apply blocking rules:
+- BLOCKED if: any rollback trigger is subjective or perception-based instead of measurable
+  ❌ "Acionar rollback se o sistema parecer instável ou houver muitas reclamações dos usuários."
+  ✅ "Acionar rollback se: (a) taxa de erros 5xx > 2% por 5 minutos consecutivos no painel de monitoramento, OU (b) health check do serviço de pagamentos falhar por mais de 60 segundos, OU (c) inconsistência de dados detectada na tabela 'orders' (pedidos criados sem ID de transação)."
+- BLOCKED if: a rollback step does not identify who executes it and what the validation is after that step
+  ❌ "3. Fazer o deploy da versão anterior."
+  ✅ "3. Deploy da versão anterior (v2.2.4) | Responsável: DevOps on-call (Lucas Ferreira, +55 11 9XXXX-XXXX) | Comando: `kubectl set image deployment/api api=registry/api:v2.2.4` | Duração estimada: 4 minutos | Validação: health check retorna HTTP 200 em todos os pods (`kubectl get pods -n production`) antes de avançar para o passo 4."
+- BLOCKED if: database migration reversal is not addressed explicitly when the deploy includes schema changes
+  ❌ "Em caso de problemas, reverter para a versão anterior do banco de dados."
+  ✅ "Migração M-047 (adição da coluna 'discount_code' na tabela 'orders'): REVERSÍVEL. Script de down-migration: `migrations/M-047-down.sql`. Executar ANTES do rollback da aplicação. Tempo estimado: 2 minutos. Impacto: dados de discount_code inseridos após o deploy serão perdidos — comunicar equipe de suporte antes de executar."
 ```
 
 ## Critério de sucesso

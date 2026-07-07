@@ -8,7 +8,7 @@
 | Categoria | docs |
 | Nível mínimo Maestro | Aprendiz |
 | Provedor LLM | Qualquer (Claude, GPT-4o, Gemini) |
-| Versão | 1.0.0 |
+| Versão | 1.1.0 |
 
 ## Objetivo
 
@@ -16,12 +16,12 @@ Gerar a representação estruturada das telas principais de um sistema, document
 
 ## Input
 
-| Campo | Obrigatório | Descrição |
-|---|---|---|
-| user_stories | Sim | Lista de User Stories que definem as funcionalidades a representar |
-| jornada_usuario | Sim | Fluxo completo que o usuário percorre para atingir seu objetivo |
-| contexto_sistema | Sim | Visão geral do sistema: tipo, público-alvo e propósito central |
-| ferramenta_visual | Não | Nome da ferramenta disponível (Figma, Excalidraw, Draw.io). Quando ausente, a skill gera representação em texto/ASCII |
+| Campo | Tipo | Obrigatório | Descrição |
+|---|---|---|---|
+| user_stories | lista de strings | Sim | Lista de User Stories que definem as funcionalidades a representar |
+| jornada_usuario | string (Markdown) | Sim | Fluxo completo que o usuário percorre para atingir seu objetivo |
+| contexto_sistema | string | Sim | Visão geral do sistema: tipo, público-alvo e propósito central |
+| ferramenta_visual | enum: Figma | Excalidraw | Draw.io | Não | Nome da ferramenta disponível (Figma, Excalidraw, Draw.io). Quando ausente, a skill gera representação em texto/ASCII |
 
 ## Output
 

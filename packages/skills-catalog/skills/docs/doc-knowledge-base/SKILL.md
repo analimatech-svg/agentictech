@@ -8,7 +8,7 @@
 | Categoria | docs |
 | Nível mínimo Maestro | Praticante |
 | Provedor LLM | Qualquer (Claude, GPT-4o, Gemini) |
-| Versão | 1.0.0 |
+| Versão | 1.1.0 |
 
 ## Objetivo
 
@@ -16,13 +16,13 @@ Gerar artigos estruturados para uma base de conhecimento sobre o sistema, cobrin
 
 ## Input
 
-| Campo | Obrigatório | Descrição |
-|---|---|---|
-| perguntas_suporte | Sim | Perguntas frequentes recebidas pelo suporte, agrupadas por tema |
-| incidentes_registrados | Não | Incidentes resolvidos que geraram aprendizado reutilizável |
-| guia_do_usuario | Não | Guia do usuário existente, usado como base para artigos de como usar |
-| categorias | Sim | Estrutura de categorias da base (ex: Como usar, Configuração, Resolução de problemas) |
-| tags_existentes | Não | Tags já em uso na base, para manter consistência na taxonomia |
+| Campo | Tipo | Obrigatório | Descrição |
+|---|---|---|---|
+| perguntas_suporte | lista de strings | Sim | Perguntas frequentes recebidas pelo suporte, agrupadas por tema |
+| incidentes_registrados | string (Markdown) | Não | Incidentes resolvidos que geraram aprendizado reutilizável |
+| guia_do_usuario | string (Markdown) | Não | Guia do usuário existente, usado como base para artigos de como usar |
+| categorias | lista de strings | Sim | Estrutura de categorias da base (ex: Como usar, Configuração, Resolução de problemas) |
+| tags_existentes | lista de strings | Não | Tags já em uso na base, para manter consistência na taxonomia |
 
 ## Output
 
