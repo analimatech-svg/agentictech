@@ -8,7 +8,7 @@
 | Categoria | docs |
 | Nível mínimo Maestro | Aprendiz |
 | Provedor LLM | Qualquer (Claude, GPT-4o, Gemini) |
-| Versão | 2.0.0 |
+| Versão | 2.1.0 |
 
 ## Objetivo
 
@@ -34,6 +34,11 @@ Gerar uma User Story no formato "Como [persona], quero [ação], para [benefíci
   4. Estimativa de tamanho (Story Points ou P/M/G com justificativa)
   5. Checklist INVEST (Independent, Negotiable, Valuable, Estimable, Small, Testable)
   6. Dependências identificadas (outras stories, sistemas ou decisões)
+- **Campos opcionais (incluir quando relevante — omitir se não houver conteúdo):**
+  7. Premissas (o que foi assumido como verdadeiro ao escrever esta US)
+  8. Fora do escopo desta US (o que esta US explicitamente não cobre)
+  9. Dúvidas abertas (perguntas que bloqueiam o refinamento antes do sprint, com owner e prazo)
+  10. Sugestão de sub-tarefas (template 5 categorias para o time de desenvolvimento)
 
 ## Prompt base
 
@@ -80,6 +85,12 @@ Produce a User Story Document in Markdown with the following sections:
    Story Points (1, 2, 3, 5, 8) or T-shirt size (S/M/L/XL) with a 2-3 line rationale.
    - If the estimate is 8 or XL: flag that the story may need to be split before entering a sprint.
 
+   SPLIT HEURISTICS — apply when the story is too large:
+   - Two distinct user personas using the same feature in different ways → split by persona.
+   - Same feature across two different channels (web/mobile, sync/async) → split by channel.
+   - Happy path and complex exception that requires different tech decisions → split by scenario.
+   - Story scores ≥ 8 points with no clear split: BLOCKED — propose explicit decomposition before the story enters the sprint.
+
 5. INVEST CHECKLIST
    Verify each property:
    - [ ] Independent: can be built and delivered without depending on another unstarted story (or: dependency is explicit)
@@ -94,12 +105,46 @@ Produce a User Story Document in Markdown with the following sections:
    Table: Dependency | Type (Story / System / Decision / External) | Status (Resolved / Pending / Blocking)
    If no dependencies: "No dependencies identified."
 
-Rules:
+7. ASSUMPTIONS (include only if applicable — omit section if none)
+   List the assumptions made while writing this story. For each assumption, state what breaks if the assumption is wrong.
+   - Format: "Assumed [X]. If false, [consequence for this story]."
+   - Example: "Assumed the authentication module (US-012) is already in production. If false, this story cannot enter the sprint."
+
+8. OUT OF SCOPE FOR THIS US (include only if applicable — omit section if none)
+   Explicitly list what this story does NOT cover. Prevents scope creep during implementation.
+   - Format: "Does not include [X]. [Reason or where it will be handled]."
+   - Example: "Does not include password reset flow. Covered by US-028."
+
+9. OPEN QUESTIONS (include only if applicable — omit section if none)
+   | Question | Why it blocks refinement | Owner | Resolution target |
+   |---|---|---|---|
+   If all questions are resolved before writing the story: omit this section entirely.
+
+10. SUGGESTED SUBTASKS (include only if applicable — helps the team during sprint planning)
+    - [ ] TSK-NNN: Analysis and technical refinement | ~0.5d
+    - [ ] TSK-NNN: Implementation | ~Xd (adjust based on story size)
+    - [ ] TSK-NNN: Unit / technical testing | ~0.5d
+    - [ ] TSK-NNN: Functional testing against Gherkin criteria | ~0.5d
+    - [ ] TSK-NNN: Documentation, deploy and acceptance | ~0.5d
+    Note: these are suggestions. The team adjusts task estimates during sprint planning.
+
+BLOCKING RULES:
 - BLOCKED if: the benefit in the story statement is a restatement of the action (e.g., "so that I can log in" after "I want to log in").
 - BLOCKED if: any acceptance criterion requires subjective judgment to verify ("looks good", "works correctly", "is fast enough" without a threshold).
 - BLOCKED if: the story is not Small and no split recommendation is provided.
 - BLOCKED if: the persona is generic ("a user", "an admin", "the system") without a named persona from discovery.
-- Write acceptance criteria in the same language as the input. Code blocks for Gherkin scenarios.
+- BLOCKED if: the story scores ≥ 8 points and no split heuristic was applied or proposed.
+
+MCP ADAPTER (detect and offer push — never force):
+After generating the Markdown document, check which MCPs are available in the environment:
+- If Jira MCP (mcp__jira__*) is available: offer to create the US directly in Jira as a Story issue type, with Gherkin in the Acceptance Criteria field and sub-tasks as Sub-task issue types.
+- If Azure DevOps MCP (mcp__azure__*) is available: offer to create the US as a User Story work item with Gherkin in the AC field and sub-tasks as Task work items.
+- If Trello MCP (mcp__trello__*) is available: offer to create a card (US as card title, Gherkin in description, sub-tasks as checklist items, persona as label).
+- If Linear MCP (mcp__linear__*) is available: offer to create an issue in Linear with priority mapped from MoSCoW.
+- If no MCP is detected: deliver the Markdown document only.
+The Markdown document is always the primary output. MCP push is optional and requires explicit user confirmation.
+
+Write acceptance criteria in the same language as the input. Code blocks for Gherkin scenarios.
 ```
 
 ## Critério de sucesso
@@ -108,12 +153,13 @@ Rules:
 - [ ] Há pelo menos dois cenários Gherkin: o caminho feliz e um cenário de exceção realista e não trivial
 - [ ] Todos os critérios de aceite são automatizáveis sem julgamento subjetivo
 - [ ] O checklist INVEST está preenchido — falhas identificadas estão documentadas com motivo
-- [ ] A estimativa tem justificativa; stories com 8+ pontos têm recomendação de split
+- [ ] A estimativa tem justificativa; stories com 8+ pontos têm heurística de split aplicada ou BLOCKED emitido
+- [ ] Campos opcionais (Premissas, Fora do escopo, Dúvidas abertas, Sub-tarefas) presentes apenas quando há conteúdo real — seções vazias não aparecem no documento final
 
 ## Boas práticas verificadas
 
-- [ ] **Governança:** story só entra no sprint após o INVEST ser verificado; critérios de aceite registrados antes da implementação, não depois de discussão oral durante o desenvolvimento
+- [ ] **Governança:** story só entra no sprint após INVEST verificado; critérios de aceite registrados antes da implementação; dúvidas abertas têm owner e prazo antes de entrar no sprint
 - [ ] **DDD:** persona, ação e benefício usam a linguagem ubíqua do domínio definida no discovery; termos técnicos de implementação (JWT, API, endpoint) não aparecem na declaração da story
 - [ ] **Observabilidade:** os "Then" do Gherkin descrevem estados observáveis do sistema (o que aparece na tela, o que a API retorna, o que é gravado no banco) — não intenções internas do código
 - [ ] **Clean Architecture:** a story não descreve decisões de implementação (qual camada executa o quê, qual biblioteca é usada); ela descreve o comportamento observável pelo usuário
-- [ ] **Documentação Markdown:** cada cenário Gherkin está em bloco de código com sintaxe consistente; tabela de dependências facilita rastreabilidade no backlog
+- [ ] **Documentação Markdown:** cada cenário Gherkin está em bloco de código com sintaxe consistente; tabela de dependências facilita rastreabilidade no backlog; seções opcionais ausentes não geram ruído visual no documento final

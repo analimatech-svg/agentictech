@@ -1,10 +1,11 @@
-# Auditoria de Qualidade — 43 Skills MaestroAI-Tech
+# Auditoria de Qualidade — 44 Skills MaestroAI-Tech
 
-**Data:** 2026-07-06 | **Rubric:** QUALITY-RUBRIC.md v1.0  
+**Data:** 2026-07-12 | **Rubric:** QUALITY-RUBRIC.md v1.0  
 **Rodada 1:** 7 reescritas + 1 skill nova  
 **Rodada 2:** upgrade sistêmico D1/D4/D7 nas 18 Pratas  
 **Rodada 3 (revisão independente):** 10 correções críticas identificadas e aplicadas — ver seção abaixo  
-**Backlog v2:** 5 novas skills adicionadas — sprint-plan, retrospective, data-model, api-contract, judge/SKILL.md
+**Backlog v2:** 5 novas skills adicionadas — sprint-plan, retrospective, data-model, api-contract, judge/SKILL.md  
+**Rodada 4:** 1 nova skill (doc-backlog v1.0.0) + upgrades doc-user-story v2.1.0 e doc-bug-report v2.0.0 (MCP adapters, split heuristics, workaround, hipótese de correção)
 
 > ⚠️ **Nota de auditoria:** a rodada 2 inflou D4=2 para `doc-wireframe` e `doc-mockup` incorretamente — nenhuma das duas tinha blocking rules. Ambas foram reescritas para v2.0.0 na rodada 3. Os scores nesta tabela refletem o estado atual pós-correção.
 
@@ -59,6 +60,7 @@ Pontuação: D1 (Input) + D2 (Output) + D3 (Prompt) + D4 (Anti-padrões) + D5 (C
 | `doc-data-model` 🆕 | 2 | 2 | 2 | 2 | 2 | 2 | 2 | **14** | 🥇 Ouro |
 | `doc-api-contract` 🆕 | 2 | 2 | 2 | 2 | 2 | 2 | 2 | **14** | 🥇 Ouro |
 | `judge/SKILL.md` 🆕 | 2 | 2 | 2 | 2 | 2 | 2 | 2 | **14** | 🥇 Ouro |
+| `doc-backlog` 🆕 | 2 | 2 | 2 | 2 | 2 | 2 | 2 | **14** | 🥇 Ouro |
 
 ---
 
@@ -66,16 +68,16 @@ Pontuação: D1 (Input) + D2 (Output) + D3 (Prompt) + D4 (Anti-padrões) + D5 (C
 
 | Faixa | Qtd | Skills |
 |-------|-----|--------|
-| 🥇 Ouro (12–14) | 43 | Todas |
+| 🥇 Ouro (12–14) | 44 | Todas |
 | 🥈 Prata (8–11) | 0 | — |
 | 🥉 Bronze (4–7) | 0 | — |
 | 🔴 Vermelho (0–3) | 0 | — |
 
-**Skills prontas para publicação como referência (Ouro):** 43/43 (100%)  
-**Skills que atendem o mínimo de publicação (Prata+):** 43/43 (100%)  
-**Skills que precisam de reescrita prioritária:** 0/43 (0%)
+**Skills prontas para publicação como referência (Ouro):** 44/44 (100%)  
+**Skills que atendem o mínimo de publicação (Prata+):** 44/44 (100%)  
+**Skills que precisam de reescrita prioritária:** 0/44 (0%)
 
-> ✅ **Base 100% Ouro.** 43 skills, todas em 12+ pontos. Publicação autorizada.
+> ✅ **Base 100% Ouro.** 44 skills, todas em 12+ pontos. Publicação autorizada.
 
 ### Skills reescritas nesta rodada
 
@@ -199,4 +201,5 @@ Achados de revisão independente (olhar de especialista externo) e correções a
 5. ~~**Upgrade D4 nas SDLC Prata**~~ ✅ Concluído
 6. ~~**Revisão independente + 11 correções críticas**~~ ✅ Concluído (Rodada 3)
 7. ~~**Backlog v2: 5 novas skills**~~ ✅ Concluído — sprint-plan, retrospective, data-model, api-contract, judge/SKILL.md
-8. **Push + deploy** — `git push origin main` + publicar `skills.mentoratech.com.br` via Vercel.
+8. ~~**Rodada 4: nova skill + upgrades MCP**~~ ✅ Concluído — doc-backlog v1.0.0 (nova), doc-user-story v2.1.0 (split heuristics + MCP), doc-bug-report v2.0.0 (workaround + hipótese + MCP)
+9. **Push + deploy** — `git push origin main` + publicar `skills.mentoratech.com.br` via Vercel.

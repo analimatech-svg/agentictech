@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Skills Registry — MaestroAI-Tech</title>
-  <meta name="description" content="43 skills agênticas para Consultores de IA que desenvolvem software com excelência.">
+  <meta name="description" content="44 skills agênticas para Consultores de IA que desenvolvem software com excelência.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -629,6 +629,15 @@ const S = [
    prac:['DDD','Governança','Clean Architecture','Observabilidade','Documentação Markdown'],
    gh:'packages/skills-catalog/skills/docs/doc-work-breakdown/SKILL.md'},
 
+  {id:'doc-backlog',         slug:'skills/docs/doc-backlog',         title:'Backlog Estruturado', cat:'docs', phase:'Fases 1+3', level:'Praticante',
+   desc:'Transforma uma demanda de negócio em backlog operacional sprint-ready: Épico → Feature → Enabler → US com Gherkin → Task. Output Markdown com mapeamento opcional para Jira, Azure, Trello, Linear ou Notion via MCP.',
+   obj:'Entregar ao time um backlog completo, priorizado (MoSCoW) e rastreável — pronto para o sprint, independente da ferramenta de gestão.',
+   inputs:['Demanda em linguagem de negócio','Personas nomeadas do discovery','Restrições de prazo e capacidade (opcional)','Nível de detalhe: épicos / features / completo (opcional)','Capacidade do sprint (opcional)','Ferramenta alvo: jira / azure / trello / linear / notion / markdown (opcional)'],
+   outputs:['Resumo da iniciativa com critério de sucesso','Hierarquia Épico → Feature → Enabler → US com Gherkin → Task','Prioridade MoSCoW por US','Sprint allocation sugerido (quando capacidade fornecida)','Mapa de dependências','Fora do escopo','Mapeamento para ferramenta alvo (quando especificado)'],
+   crit:['Épico tem critério de sucesso de negócio — não técnico','Feature tem declaração de valor ao usuário observável sem código','Enabler referencia a Feature que desbloqueia e seu tipo (Spike/Infra/Refactoring/API Research)','Cada US tem mínimo 2 cenários Gherkin com critérios automatizáveis e persona nomeada','Seção fora do escopo presente com pelo menos 1 item justificado'],
+   prac:['DDD','Governança','Clean Architecture','Observabilidade','Documentação Markdown'],
+   gh:'packages/skills-catalog/skills/docs/doc-backlog/SKILL.md'},
+
   {id:'doc-requirements',    slug:'skills/docs/doc-requirements',    title:'Requirements',    cat:'docs', phase:'Fase 2', level:'Aprendiz',
    desc:'Requisitos funcionais e não funcionais com valores numéricos e condições de verificação — sem ambiguidade que impeça o teste.',
    obj:'Garantir que cada requisito tenha critério de aceite verificável antes de chegar ao Design.',
@@ -907,7 +916,7 @@ const catLabel = {sdlc:'SDLC',quality:'Qualidade',docs:'Docs'};
 function render() {
   const vis = filtered();
   document.getElementById('rcount').textContent =
-    vis.length === 43 ? '43 skills' : `${vis.length} skill${vis.length !== 1 ? 's' : ''} encontrada${vis.length !== 1 ? 's' : ''}`;
+    vis.length === 44 ? '44 skills' : `${vis.length} skill${vis.length !== 1 ? 's' : ''} encontrada${vis.length !== 1 ? 's' : ''}`;
 
   document.getElementById('grid').innerHTML = vis.length ? vis.map(s => `
     <div class="card c-${s.cat}" onclick="open_('${s.id}')">
