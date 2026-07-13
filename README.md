@@ -48,10 +48,10 @@ packages/skills-catalog/
 └── skills/
     ├── sdlc/           ← 8 skills de execução das fases (planning → monitor)
     ├── quality/        ← 3 skills transversais de qualidade
-    └── docs/           ← 31 skills de geração de artefatos (uma por tipo de documento)
+    └── docs/           ← 32 skills de geração de artefatos (uma por tipo de documento)
 ```
 
-**43 skills · 3 pipelines · 8 conjuntos de indicadores · 100% Ouro na QUALITY-RUBRIC**
+**44 skills · 3 pipelines · 8 conjuntos de indicadores · 100% Ouro na QUALITY-RUBRIC**
 
 ---
 
@@ -82,12 +82,12 @@ Executadas automaticamente pelo Judge em todo output — podem bloquear o avanç
 
 ---
 
-## Skills de Documentação (31 artefatos)
+## Skills de Documentação (32 artefatos)
 
 Cada skill produz um artefato verificável. A Escala Maestro define o nível mínimo para usar cada uma.
 
 **Planning / Gestão**
-`doc-business-case` · `doc-roadmap` · `doc-work-breakdown` · `doc-sprint-plan` · `doc-status-report`
+`doc-business-case` · `doc-roadmap` · `doc-work-breakdown` · `doc-backlog` · `doc-sprint-plan` · `doc-status-report`
 
 **Discovery / Pesquisa**
 `doc-requirements` · `doc-persona` · `doc-user-journey`
