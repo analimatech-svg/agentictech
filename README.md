@@ -128,7 +128,7 @@ Princípio: Entender antes de agir. Propor antes de executar. Validar antes de a
 
 | Pipeline | Skills | Nível mínimo | Quando usar |
 |---|---|---|---|
-| `sdlc-completo` | 38 skills, 8 fases | Regente | Projeto novo com rastreabilidade total |
+| `sdlc-completo` | 39 skills, 8 fases | Regente | Projeto novo com rastreabilidade total |
 | `mvp-rapido` | 10 skills, foco no essencial | Praticante | Validar hipótese em produção rapidamente |
 | `analise-codebase` | 7 skills, auditoria | Aprendiz | Entender e documentar sistema existente |
 
